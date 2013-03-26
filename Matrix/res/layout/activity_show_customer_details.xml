@@ -1,0 +1,71 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/AppTheme"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_tylor"
+    android:orientation="vertical" 
+    android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/textView_ShowCustDetails"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="20dp"  
+            android:background="@color/Color_Black"         
+            android:textColor="@color/Color_darkGreen"
+            android:typeface="normal" />
+        
+<!--         <Button -->
+<!--             android:id="@+id/button_showCustDetails_ok" -->
+<!--             style="@style/ButtonStyle"            -->
+<!--             android:onClick="goHome"             -->
+<!--             android:text="@string/button_showCustDetails_ok" /> -->
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btn_SearchResult_Edit"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp" 
+            android:background="@color/Color_steelBlue"
+            android:textColor="@color/Color_White"
+            android:textStyle="bold"
+            android:onClick="editMe"
+            android:text="@string/btnTxt_SearchResult_Edit" />      
+        
+
+        <Button
+            android:id="@+id/btn_SearchResult_Delete"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:background="@color/Color_steelBlue"
+            android:textColor="@color/Color_White"
+            android:textStyle="bold"
+            android:onClick="deleteMe"
+            android:text="@string/btnTxt_SearchResult_Delete" />
+
+        <Button
+            android:id="@+id/btn_SearchResult_Home"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_margin="3dp"
+            android:background="@color/Color_steelBlue"
+            android:textColor="@color/Color_White"
+            android:textStyle="bold"
+            android:text="@string/btnTxt_SearchResult_Home"
+            android:onClick="goHome" />
+        
+        
+    </LinearLayout>
+</LinearLayout>

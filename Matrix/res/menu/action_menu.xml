@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+   
+    <item android:id="@+id/editCustProfile_btn"
+        android:title="@string/button_profile"        
+        android:showAsAction="always|withText" 
+        android:visible="true"/>
+     <item android:id="@+id/save_btn"
+        android:title="@string/button_addMeasurementSave"        
+        android:showAsAction="always|withText" />
+</menu>
