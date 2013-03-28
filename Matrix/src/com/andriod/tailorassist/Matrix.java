@@ -52,7 +52,7 @@ public class Matrix extends Activity {
 //        final ActionBar actionBar = getActionBar();
 //        BitmapDrawable background = new BitmapDrawable(BitmapFactory.decodeResource(getResources(), R.drawable.bg_topbar));
 //        actionBar.setBackgroundDrawable(background);
-        com.andriod.tailorassist.screen.Styles.setActionBarStyle(getActionBar(), getResources());
+        //com.andriod.tailorassist.screen.Styles.setActionBarStyle(getActionBar(), getResources());
     }
 
     
@@ -73,7 +73,7 @@ public class Matrix extends Activity {
 			Intent intent = new Intent(this,SearchableActivity.class );
 	    	startActivity(intent);	
 	  }
-	 public boolean onCreateOptionsMenu(Menu menu) {
+	/* public boolean onCreateOptionsMenu(Menu menu) {
 		    // Inflate the options menu from XML
 		    MenuInflater inflater = getMenuInflater();
 		    inflater.inflate(R.menu.options_menu, menu);
@@ -87,5 +87,5 @@ public class Matrix extends Activity {
 		    searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
 		    
 		    return true;
-		}
+		}*/
 }
