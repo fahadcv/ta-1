@@ -34,7 +34,7 @@
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:paddingLeft="65dp"
-            android:paddingRight="65dp"             >
+            android:paddingRight="65dp"  >
 
             <RelativeLayout
                 android:id="@+id/home_layout_btns_add_search"
