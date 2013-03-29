@@ -1,117 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="@drawable/bg_tylor"
-    android:paddingTop="3dp" 
-    android:paddingLeft="10dp"
-    android:paddingRight="20dp"
-    android:paddingBottom="2dp"  >
+    android:paddingTop="30dp" 
+ >
 
     <RelativeLayout
         android:id="@+id/custdetail_view_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-
+        
         android:background="@drawable/bg_custdetailslip"
-        android:orientation="vertical"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp" 
-        android:layout_marginBottom="2dp">
+        android:layout_centerHorizontal="true"
+        
+        >
 
         <RelativeLayout
             android:id="@+id/custdetail_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp" 
-            android:layout_marginRight="25dp">
-
-            <LinearLayout
-                android:id="@+id/detailsLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingBottom="5dp" 
-                android:layout_marginTop="20dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="10dp" >
-
-                    <ImageView
+            android:layout_margin="40dp"
+            >
+				<ImageView
                         android:id="@+id/cust_view_name_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/text_newCustHome_name"
-                        android:src="@drawable/ic_person" />
-
-                    <TextView
+                        android:src="@drawable/ic_person"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        />
+				  <TextView
                         android:id="@+id/cust_view_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="40dp"
                         android:textColor="#040404"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="10dp" >
-
-                    <ImageView
+                        android:textSize="30sp"
+                        android:textStyle="bold" 
+                        android:layout_toRightOf="@+id/cust_view_name_icon"
+                        android:layout_alignTop="@+id/cust_view_name_icon"
+                        android:text="Customer Name"
+                        android:layout_alignParentTop="true"/>
+<ImageView
                         android:id="@+id/cust_view_mobile_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/text_newCustHome_mobile"
-                        android:src="@drawable/ic_mobile" />
+                        android:src="@drawable/ic_mobile" 
+                        
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="30dp"
+                        android:layout_below="@+id/cust_view_name_icon"/>
 
                     <TextView
                         android:id="@+id/cust_view_mobile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="40dp"
                         android:textColor="#040404"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="10dp" >
-
-                    <ImageView
+                        android:textSize="20sp" 
+                        android:layout_toRightOf="@+id/cust_view_mobile_icon"
+                        android:layout_alignTop="@+id/cust_view_mobile_icon"
+                        android:layout_below="@+id/cust_view_name"
+                        android:text="9991110001"/>
+				   <ImageView
                         android:id="@+id/cust_view_a_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/text_newCustHome_address"
-                        android:src="@drawable/ic_home" />
+                        android:src="@drawable/ic_home"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="30dp"
+                        android:layout_below="@+id/cust_view_mobile_icon" />
 
                     <TextView
                         android:id="@+id/cust_view_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="40dp"
                         android:textColor="#040404"
-                        android:textSize="12sp" />
-                </LinearLayout>
-            </LinearLayout>
+                        android:textSize="20sp"
+                        android:layout_toRightOf="@+id/cust_view_a_icon"
+                        android:layout_alignTop="@+id/cust_view_a_icon"
+                        android:layout_below="@+id/cust_view_mobile"
+                        android:text="KK Villa, Edappal" />
+				  
+            <ImageView 
+                android:id="@+id/cust_detail_divider"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cust_view_address"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:src="@drawable/separator"/>
 
             <ListView
                 android:id="@+id/detail_view_measurments_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/detailsLayout"
-                
-                android:layout_alignLeft="@+id/detailsLayout"
-                android:layout_marginBottom="30dp" 
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/cust_detail_divider"
+                android:layout_alignParentLeft="true"
+                android:divider="@drawable/separator"
                 
                >
 
@@ -139,11 +130,15 @@
         </RelativeLayout>
 </RelativeLayout>
         <LinearLayout
+            android:id="@+id/cust_btn_line"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/custdetail_view_main"
-            android:padding="10dp"
-            android:gravity="center_horizontal" 
+            android:layout_marginTop="20dp"
+            
+            
+            android:gravity="center_horizontal"
+            
             >
 
             <Button
@@ -160,7 +155,6 @@
 
             <Button
                 android:id="@+id/btn_SearchResult_Delete"
-                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 
@@ -170,17 +164,29 @@
                 android:textStyle="bold" />
             <!-- android:text="@string/btnTxt_SearchResult_Delete" -->
 
-            <Button
-                android:id="@+id/btn_SearchResult_Home"
-                style="?android:attr/buttonStyleSmall"
+           
+
+            <!-- android:text="@string/btnTxt_SearchResult_Home" -->
+            <!--      style="?android:attr/buttonStyleSmall" -->
+			<Button
+                android:id="@+id/btn_add_another_cust"
+           
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                
+                android:text="New"
+                android:background="@drawable/btn_custdone"
+                android:onClick="addAnother"
+                android:textColor="@color/Color_White" 
+                android:textStyle="bold"/>
+        </LinearLayout>
+         <Button
+             android:layout_marginTop="20dp"
+                android:id="@+id/btn_SearchResult_Home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/cust_btn_line"
                 android:background="@drawable/btn_custdone"
                 android:onClick="goHome"
                 android:textColor="@color/Color_White" />
-
-            <!-- android:text="@string/btnTxt_SearchResult_Home" -->
-
-        </LinearLayout>
     </RelativeLayout>

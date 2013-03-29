@@ -47,7 +47,7 @@
         android:ems="10"
         android:textColor="@color/Color_Black"
         android:hint="@string/text_newCustHome_address"
-        android:inputType="textPostalAddress"
+        android:inputType="textMultiLine|textPostalAddress|"
         android:layout_marginTop="6dip"
         android:background="@drawable/bg_edittext_large"
         android:paddingLeft="6dip"

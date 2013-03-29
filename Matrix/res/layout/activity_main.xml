@@ -3,92 +3,116 @@
     style="@style/AppTheme"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_gravity="center"
+    
     android:background="@drawable/home_bg"
-    android:gravity="center_vertical"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/home_top_bar"
+    <RelativeLayout
+        android:id="@+id/home_Imagebutton_container"
         android:layout_width="fill_parent"
-        android:layout_height="85dp" >
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="14dp"
+        android:layout_marginTop="180dp" >
+<TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+ >
 
-    </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/home_bottom_banner_container"
+        <TableRow
+            android:id="@+id/tableRow2"
             android:layout_width="fill_parent"
-            android:layout_height="265dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true" >
-        </LinearLayout>
+            android:layout_height="wrap_content" 
+            android:layout_gravity="center_horizontal"
+            >
+
+            <ImageButton
+                android:id="@+id/home_imageButtonSearh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="findCustomer"
+                android:src="@drawable/home_search_icon"
+                android:background="@android:color/transparent"
+                 />
+
+            <Space
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/home_imageButtonAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="newCustHome"
+                android:background="@android:color/transparent"
+                android:src="@drawable/home_add_icon" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="40dp" >
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageButton
+                android:id="@+id/viewAll_cust"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/home_all_icon" 
+                android:onClick="listAll"/>
+
+            <Space
+                android:layout_width="60dp"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/home_imageButtonCalendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/home_calendar_icon" />
+
+        </TableRow>
+
+    </TableLayout>
+        <RelativeLayout
+            android:id="@+id/home_layout_btns_add_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:padding="50dp" >
+        </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/home_Imagebutton_container"
-            android:layout_width="fill_parent"
+            android:id="@+id/home_layout_btns_all_calendar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/home_top_bar"
-            android:layout_above="@+id/home_bottom_banner_container"
-            
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:paddingLeft="65dp"
-            android:paddingRight="65dp"  >
-
-            <RelativeLayout
-                android:id="@+id/home_layout_btns_add_search"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/home_layout_btns_all_calendar"
-                android:layout_alignParentTop="true"                
-                android:orientation="horizontal" >
-
-                <ImageButton
-                    android:id="@+id/home_imageButtonAdd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:onClick="newCustHome"
-                    android:src="@drawable/home_add_icon" />
-
-                <ImageButton
-                    android:id="@+id/home_imageButtonSearh"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:onClick="findCustomer"
-                    android:src="@drawable/home_search_icon" />
-            </RelativeLayout>
-            
-             <RelativeLayout
-                android:id="@+id/home_layout_btns_all_calendar"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_alignParentBottom="true"
-                android:paddingTop="30dp"                >
-
-                <ImageButton
-                    android:id="@+id/viewAll_cust"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"                    
-                    android:src="@drawable/home_all_icon"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true" />
-
-                <ImageButton
-                    android:id="@+id/home_imageButtonCalendar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"					
-                    android:src="@drawable/home_calendar_icon" />
-            </RelativeLayout>
-            
-
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/home_layout_btns_add_search"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal" >
         </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/home_bottom_banner_container"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/home_Imagebutton_container" >
+    </LinearLayout>
+
+    
 
 </RelativeLayout>

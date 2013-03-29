@@ -12,7 +12,7 @@
     <string name="text_reset"> Reset </string>
     <string name="text_newCustHome_mobile"> Mobile Number </string>
     <string name="text_newCustHome_address"> Address </string>
-    <string name="button_newCustHomeAddMeasurement">Add Measurement</string>
+    <string name="button_newCustHomeAddMeasurement">Measurements...</string>
     <string name="title_activity_add_measurement">Enter measurement details</string>
     <string name="checkBox_addMeasurement_shirt">\t Shirt</string>
     <string name="checkBox_addMeasurement_pant">\t Trouser</string>
@@ -22,9 +22,9 @@
     <string name="button_addMeasurementSave">Save</string>
     <string name="button_profile">Profile</string>
     <string name="title_activity_measurements">Measurements</string>
-    <string name="title_activity_show_customer_details">ShowCustomerDetails</string>
+    <string name="title_activity_show_customer_details">Customer details</string>
     <string name="button_showCustDetails_ok"> Home</string>
-    <string name="title_activity_find_customer">FindCustomer</string>
+    <string name="title_activity_find_customer">Find Customer</string>
     <string name="SearchButtonContentDescription">Search</string>
     <string name="textView_searchById_hintText">\t\tcustomer number</string>
     <string name="textView_searchByName_hintText">\t\tcustomer name</string>
@@ -54,9 +54,9 @@
     <string name="alertTxt_FindCustomer_byMob_empty">Please enter the mobile number correcly</string>
     <string name="alertTxt_FindCustomer_byName_empty">Please enter the name correcly</string>
     <string name="title_activity_search_customer_by_name">SearchCustomerByName</string>
-    <string name="alertTxt_NewCustomer_Name_mobile_empty">Name and mobile number cannot be empty</string>
+    <string name="alertTxt_NewCustomer_Name_mobile_empty">Name or mobile number required</string>
     <string name="alertTxt_NewCustomer_invalid_mobile">Please enter valid mobile number</string>
-    <string name="alertTxt_NewCustomer_Measuremetns_emptyMsg">Please enter the measuremetnts</string>
+    <string name="alertTxt_NewCustomer_Measuremetns_emptyMsg">Please enter the measurements</string>
     <string name="mainPage_contentDesc_addCustomer">add a new customer</string>
     <string name="mainPage_contentDesc_findCustomer">find a customer</string>
     <string name="mainPage_contentDesc_viewAllCustomers">veiw all customers</string>
