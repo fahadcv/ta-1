@@ -1,5 +1,7 @@
 package com.andriod.tailorassist;
 
+import android.widget.EditText;
+
 public class Util {
 	public static boolean isNumeric(String value){
 		try{
@@ -16,6 +18,10 @@ public class Util {
 			
 		
 				switch(value.length()){
+				case 7:
+					if(value.charAt(0)=='2')
+						flag = true;
+					break;
 				case 10:
 					flag = true;
 					break;
@@ -39,4 +45,12 @@ public class Util {
 		}
 		return flag;
 	} 
+	public static boolean isEmpty(String data){
+		return data == null || "".equals(data.trim());
+	}
+	public static boolean isModified(EditText editField, String oldValue){
+		return !(Util.isEmpty(oldValue) && (editField == null || Util.isEmpty(editField.getText().toString()))
+				|| (editField != null && editField.getText()!=null && editField.getText().toString().trim().equals(oldValue))) ;
+	
+	}
 }

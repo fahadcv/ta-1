@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
@@ -25,6 +28,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MeasurementsEntryActivity extends FragmentActivity implements ActionBar.TabListener {
+	 final public static int PROFILE = 1;
+	 final public static int HOME = 2;
 	
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide fragments for each of the
@@ -95,26 +100,30 @@ public class MeasurementsEntryActivity extends FragmentActivity implements Actio
     		e.printStackTrace();
     	}
     	Bundle extras = this.getIntent().getExtras();
+    	custName = extras.getString("custName");
+    	custMobile = extras.getString("custMobile");
+    	custAddress = extras.getString("custAddress"); 
         if(extras.getString("mode") != null && "edit".equals(extras.getString("mode"))){
         	custId = extras.getLong("custId");
-        	initEdit();
+
+        	initEdit("preserve".equals(extras.getString("changes")));
         }else{
         	custId = -1;
-			custName = extras.getString("custName");
-	    	custMobile = extras.getString("custMobile");
-	    	custAddress = extras.getString("custAddress");   	
+        	
 	    	
         }
         com.andriod.tailorassist.screen.Styles.setActionBarStyle(getActionBar(), getResources());
     }
-    private void initEdit(){
+    private void initEdit(boolean preserveProfileChanges){
     	CustomerTable custTable = new CustomerTable(this);
     	custTable.open();
     	Cursor newCustDetails = custTable.fetchCustomerById(custId);
     	custTable.close();
+    	if(!preserveProfileChanges){
     	 custName = newCustDetails.getString(newCustDetails.getColumnIndex(custTable.KEY_NAME));
     	 custMobile = newCustDetails.getString(newCustDetails.getColumnIndex(custTable.KEY_MOBILE));    		
     	 custAddress = newCustDetails.getString(newCustDetails.getColumnIndex(custTable.KEY_ADDRESS));
+    	}
     	String custShirtDetails = newCustDetails.getString(newCustDetails.getColumnIndex(custTable.KEY_SHIRTDETAILS));
     	String custPantDetails = newCustDetails.getString(newCustDetails.getColumnIndex(custTable.KEY_PANTDETAILS));
     	String custOtherDetails = newCustDetails.getString(newCustDetails.getColumnIndex(custTable.KEY_OTHERDETAILS));
@@ -146,77 +155,108 @@ public class MeasurementsEntryActivity extends FragmentActivity implements Actio
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.action_menu, menu);
+    	if(custId>0)
+    		getMenuInflater().inflate(R.menu.action_menu, menu);
+    	else
+    		getMenuInflater().inflate(R.menu.activity_measurment_new_action_menu, menu);
+    	
         return true;
     }
     public boolean onOptionsItemSelected(MenuItem item) {
     	switch (item.getItemId()) {
         case R.id.save_btn:
-        	Bundle details = this.getIntent().getExtras();
-        	details.putLong("custId", custId);
-        	putMeasurmentDetails(details);
-//        	for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-//        		
-////        		String tabTitle = mSectionsPagerAdapter.getPageTitle(i).toString();
-////        		System.out.println(i+":"+tabTitle);
-////        		int tabCount = mSectionsPagerAdapter.getCount();
-////				MeasurmentFragment fragment = new MeasurmentFragment(tabTitle);
-//				
-//				MeasurmentFragment fragment = (MeasurmentFragment)mSectionsPagerAdapter.getItem(i);
-//        		String measurement = fragment.getMeasurement();     
-//        		if(measurement.isEmpty()) measurement = "";
-//        		switch (i) {
-//				case SHIRT:
-//					details.putString("shirtDetails", measurement);
-//					break;
-//				case TROUSER:
-//					details.putString("trouserDetails", measurement);
-//					break;
-//				default:
-//					details.putString("otherDetails", measurement);
-//					break;
-//				}
-//            }
-        	long newCustNumber = addCustomerDetails(details);
-        	
-        	if(newCustNumber != 0){				
-				String newCustNum =  String.valueOf(newCustNumber);				
-				//Show the next layout view
-				Intent intent = new Intent(Ctxt,ShowCustomerDetails.class);				
-				/* sending the customer details to next activity 			 */
-				Bundle bundle = new Bundle();			
-				bundle.putString("newCustmerNumber", newCustNum);				
-				intent.putExtras(bundle);				
-				//start the activity				
-				Ctxt.startActivity(intent);				
-			}
-        	
-        	return true;      
+        	if(!isChangesSaved()){
+        		return save();      
+        	}else {
+        		if(isEmpty()){
+
+            		Toast.makeText(Ctxt, R.string.alertTxt_NewCustomer_Measuremetns_emptyMsg, Toast.
+            				LENGTH_LONG).show();	
+        		}
+        		return false;
+        	}
         case android.R.id.home:
-            // app icon in action bar clicked; go home
-            Intent intent = new Intent(this,Matrix.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            return true;
+        	if(isChangesSaved()){
+	           return goHome();
+        	}else{
+        		unSavedAlert(HOME).show();
+        		
+        	}
+        	return false;
            
         case R.id.editCustProfile_btn:
-        	Intent intent1 = new Intent(this,NewCustomerHome.class );
-        	Bundle bundle = new Bundle();			
-			
-			bundle.putLong("custId", custId);
-			bundle.putString("custName", custName);
-			bundle.putString("custMobile", custMobile);
-			bundle.putString("custAddress", custAddress);
-			bundle.putString("mode", "edit");
-			putMeasurmentDetails(bundle);
-			intent1.putExtras(bundle);
-        	startActivity(intent1);
-        	return true;
-        	
+        	if(isChangesSaved()){
+ 	           return editProfile();
+         	}else{
+         		unSavedAlert(PROFILE).show();
+         		
+         	}
+         	return false;
         default:
             return super.onOptionsItemSelected(item);}
         }
-    
+    public boolean save(){
+    	Bundle details = this.getIntent().getExtras();
+    	details.putLong("custId", custId);
+    	putMeasurmentDetails(details);
+//    	for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
+//    		
+////    		String tabTitle = mSectionsPagerAdapter.getPageTitle(i).toString();
+////    		System.out.println(i+":"+tabTitle);
+////    		int tabCount = mSectionsPagerAdapter.getCount();
+////			MeasurmentFragment fragment = new MeasurmentFragment(tabTitle);
+//			
+//			MeasurmentFragment fragment = (MeasurmentFragment)mSectionsPagerAdapter.getItem(i);
+//    		String measurement = fragment.getMeasurement();     
+//    		if(measurement.isEmpty()) measurement = "";
+//    		switch (i) {
+//			case SHIRT:
+//				details.putString("shirtDetails", measurement);
+//				break;
+//			case TROUSER:
+//				details.putString("trouserDetails", measurement);
+//				break;
+//			default:
+//				details.putString("otherDetails", measurement);
+//				break;
+//			}
+//        }
+    	long newCustNumber = addCustomerDetails(details);
+    	
+    	if(newCustNumber != 0){				
+			String newCustNum =  String.valueOf(newCustNumber);				
+			//Show the next layout view
+			Intent intent = new Intent(Ctxt,ShowCustomerDetails.class);				
+			/* sending the customer details to next activity 			 */
+			Bundle bundle = new Bundle();			
+			bundle.putString("newCustmerNumber", newCustNum);				
+			intent.putExtras(bundle);				
+			//start the activity				
+			Ctxt.startActivity(intent);
+			return true;
+		}
+    	return false;
+    }
+    public boolean goHome(){
+    	 Intent intent = new Intent(this,Matrix.class);
+         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+         startActivity(intent);
+         return true;
+    }
+    public boolean editProfile(){
+    	Intent intent1 = new Intent(this,NewCustomerHome.class );
+    	Bundle bundle = new Bundle();			
+		
+		bundle.putLong("custId", custId);
+		bundle.putString("custName", custName);
+		bundle.putString("custMobile", custMobile);
+		bundle.putString("custAddress", custAddress);
+		bundle.putString("mode", "edit");
+		putMeasurmentDetails(bundle);
+		intent1.putExtras(bundle);
+    	startActivity(intent1);
+    	return true;
+    }
     public void putMeasurmentDetails(Bundle details){
     	for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
     		
@@ -240,6 +280,18 @@ public class MeasurementsEntryActivity extends FragmentActivity implements Actio
 				break;
 			}
         }
+    }
+    public boolean isEmpty(){
+    	boolean empty = true;
+    	for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
+    		MeasurmentFragment fragment = (MeasurmentFragment)mSectionsPagerAdapter.getItem(i);
+    		String measurement = fragment.getMeasurement();     
+    		if(!measurement.isEmpty()){
+    			empty = false;
+    		}
+
+        }
+    	return empty;
     }
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     	
@@ -356,4 +408,54 @@ public class MeasurementsEntryActivity extends FragmentActivity implements Actio
     	msrmntFrg.setMeasurement("");
 		
 	}
+    public boolean isChangesSaved(){
+    	boolean changesSaved = true;
+		for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
+		    MeasurmentFragment fragment = (MeasurmentFragment)mSectionsPagerAdapter.getItem(i);
+		    if(!fragment.isChangesSaved())
+		    {
+		    	changesSaved = false;
+		    	break;
+		    }
+		}
+    	return changesSaved;
+    }
+    
+    public Dialog unSavedAlert(final int moveTo){
+    	
+    	
+    	
+    	
+    	AlertDialog.Builder builder = new AlertDialog.Builder(Ctxt);
+		builder.setMessage("Measurements have been modified. Save changes?");
+		builder.setInverseBackgroundForced(true);
+		builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+			
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+				save();
+				goHome();
+			}		
+		});
+				
+		builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			
+			public void onClick(DialogInterface dialog, int which) {
+				
+				dialog.dismiss();
+				if(moveTo == HOME)
+					goHome();
+				else if(moveTo == PROFILE)
+					editProfile();
+			}
+		});
+		builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+			
+			public void onClick(DialogInterface dialog, int which) {
+				
+				dialog.dismiss();
+			}
+		});
+		return builder.create();
+    }
 }

@@ -162,6 +162,15 @@ public class CustomerTable {
 		return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + custId, null)>0;
 		
 	}	
-	
+	public boolean updateCustomerProfile(long custId, String custName, String custMobile, String custAddress){
+		
+		ContentValues args = new ContentValues();
+		args.put(KEY_NAME, custName);
+		args.put(KEY_MOBILE, custMobile);
+		args.put(KEY_ADDRESS, custAddress);
+
+		return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + custId, null)>0;
+		
+	}	
 	
 }

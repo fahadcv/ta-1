@@ -13,13 +13,14 @@ public class MeasurmentFragment extends Fragment {
 	String caption;
 	EditText measurementField ;
 	String measurmentText;
+//	boolean changesSaved;
 	public MeasurmentFragment(String caption){
 		this.caption = "Enter "+caption+" Details";
 //EditText measurementField;
 //    	
 //    	measurementField = (EditText)getView().findViewById(R.id.editText_shirtMeasurement);
 //    	measurementField.setHint(caption);
-		
+//		changesSaved = true;
 	}
 
 	@Override
@@ -55,10 +56,11 @@ public class MeasurmentFragment extends Fragment {
 			return measurementField.getText().toString().trim();
 		
 		else
-			return "";
+			return measurmentText == null ? "" : measurmentText;
 //		return getText(R.id.editText_measurement).toString();
 	} 
 	public void appendMeasurement(String appendText){
+//		changesSaved = false;
 		int start = measurementField.getSelectionStart();
 		
 		if(start < measurementField.getText().length()){
@@ -71,14 +73,18 @@ public class MeasurmentFragment extends Fragment {
 	public void setMeasurement(String newText){
 		if(newText == null)
 			newText = "";
+		measurmentText = newText;
 		if(measurementField != null)
 			measurementField.setText(newText);
-		else
-		{
-			measurmentText = newText;
-			Log.e("setMeasurment","measurementField NOT yet init it is null");
-		}
+//		else
+//		{
+//			measurmentText = newText;
+//			//Log.e("setMeasurment","measurementField NOT yet init it is null");
+//		}
 	}
-
-
+	public boolean isChangesSaved()
+	{
+		return (Util.isEmpty(measurmentText) && (measurementField == null || Util.isEmpty(measurementField.getText().toString()))
+				|| (measurementField != null && measurementField.getText()!=null && measurementField.getText().toString().trim().equals(measurmentText))) ;
+	}
 }

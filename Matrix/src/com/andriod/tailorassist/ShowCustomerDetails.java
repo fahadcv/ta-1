@@ -2,6 +2,9 @@ package com.andriod.tailorassist;
 
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -97,10 +100,31 @@ public class ShowCustomerDetails extends Activity {
     		
     		ListView mesurmentList = (ListView)findViewById(R.id.detail_view_measurments_list);
 //    		mesurmentList.setDividerHeight(2);
-    		mesurmentList.setAdapter(new BindDataAdapter(this, img,titles, new String[]{custShirtDetails, custPantDetails, custOtherDetails} ));
-    		View canvas = (View)findViewById(R.id.custdetail_main);
-    		canvas.setRotationX(-5);
-    		canvas.setRotation(canvas.getHeight()/2);
+//    		mesurmentList.setAdapter(new BindDataAdapter(this, img,titles, new String[]{custShirtDetails, custPantDetails, custOtherDetails} ));
+    		Map<String , MeasurmentDetailVO> measurments = new HashMap<String, MeasurmentDetailVO>();
+    		if(custOtherDetails != null && !"".equals(custOtherDetails.trim())){
+    			MeasurmentDetailVO vo = new MeasurmentDetailVO();
+    			vo.setIconId(R.drawable.ic_other);
+    			vo.setMeasurments(custOtherDetails);
+    			measurments.put("Others", vo);
+    		}
+    		
+    		if(custPantDetails != null && !"".equals(custPantDetails.trim())){
+    			MeasurmentDetailVO vo = new MeasurmentDetailVO();
+    			vo.setIconId(R.drawable.ic_trouser);
+    			vo.setMeasurments(custPantDetails);
+    			measurments.put("Trouser", vo);
+    		}
+    		if(custShirtDetails != null && !"".equals(custShirtDetails.trim())){
+    			MeasurmentDetailVO vo = new MeasurmentDetailVO();
+    			vo.setIconId(R.drawable.ic_shirt);
+    			vo.setMeasurments(custShirtDetails);
+    			measurments.put("Shirt", vo);
+    		}
+    		mesurmentList.setAdapter(new BindDataAdapter(this, measurments));
+//    		View canvas = (View)findViewById(R.id.custdetail_main);
+//    		canvas.setRotationX(-5);
+//    		canvas.setRotation(canvas.getHeight()/2);
     	}
     	
         Styles.setActionBarStyle(getActionBar(), getResources());
@@ -258,28 +282,10 @@ public class ShowCustomerDetails extends Activity {
 			});
 			return builder.create();
 	    }
-	    public Dialog addAnotherConfirm(){
-	    	
-	    	AlertDialog.Builder builder = new AlertDialog.Builder(Ctxt);
-			builder.setMessage(R.string.alertDialogTxt_SearchResult_deleteMessage);
-			builder.setInverseBackgroundForced(true);
-			builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-				
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.dismiss();
-					//TODO go to newcustomer
-									
-				}		
-			});
-					
-			builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-				
-				public void onClick(DialogInterface dialog, int which) {
-					
-					dialog.dismiss();
-				}
-			});
-			return builder.create();
+	    public void addAnother(View v){
+	    	Intent intent = new Intent(Ctxt,NewCustomerHome.class);				
+		
+			Ctxt.startActivity(intent);
 	    }
 	    private boolean deleteCustomer(long custNum) {
 			

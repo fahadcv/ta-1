@@ -42,18 +42,21 @@ public class SearchableActivity extends  ListActivity {
 	    }else{
 	    	//listAll
 	    	Bundle extras = this.getIntent().getExtras();
+	    	
 	    	Log.d("TEST", "extras "+extras);
-	        if(extras.getBoolean("listAll"))// != null && "edit".equals(extras.getString("mode"))){
-	        {
-	        	doMySearch("");
-	        	if(getListView().getCount()<=0){
-	    	    	Toast.makeText(this, "No Customer Found",Toast.LENGTH_LONG).show();
-	        	}
-	        }else if(extras.getString("searchedOn")!=null){
-	        	doMySearch(extras.getString("searchedOn"));
-	        	if(getListView().getCount()<=0){
-	        		goHome();
-	        	}
+	        if(extras != null){
+		    	if(extras.getBoolean("listAll"))// != null && "edit".equals(extras.getString("mode"))){
+		        {
+		        	doMySearch("");
+		        	if(getListView().getCount()<=0){
+		    	    	Toast.makeText(this, "No Customer Found",Toast.LENGTH_LONG).show();
+		        	}
+		        }else if(extras.getString("searchedOn")!=null){
+		        	doMySearch(extras.getString("searchedOn"));
+		        	if(getListView().getCount()<=0){
+		        		goHome();
+		        	}
+		        }
 	        }
 	    }
 	    
@@ -104,7 +107,10 @@ public class SearchableActivity extends  ListActivity {
 //		    Log.d("ComponentName", "ComponentName :"+cn);
 		    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 		    searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
-		    
+		    int id = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+		    TextView textView = (TextView) searchView.findViewById(id);
+		    textView.setWidth(400);
+		    searchView.requestFocus();
 		    return true;
 		}
 	public void doMySearch(final String query){

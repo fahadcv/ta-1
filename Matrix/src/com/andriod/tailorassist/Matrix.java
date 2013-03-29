@@ -27,36 +27,29 @@ public class Matrix extends Activity {
         setContentView(R.layout.activity_main);
         
         Ctxt = this;
-        
-        //when user clicks on the view All customer button, show all the customers
-        ImageButton ImgBtnViewAll = (ImageButton) findViewById(R.id.viewAll_cust);        
-        ImgBtnViewAll.setOnClickListener(new OnClickListener() {
-        	
-			public void onClick(View v)  {
-			
-						Bundle bundle = new Bundle();			
-						bundle.putString("custName","");	
-//						
-//						Intent intent = new Intent(Ctxt,SearchCustomerByName.class);				
-//						/* sending the customer details to next activity 			 */						
-//						intent.putExtras(bundle);			
-//						
-//						//start the activity						
-//						Ctxt.startActivity(intent);		
-						Intent intent = new Intent(Ctxt,SearchableActivity.class );
-						bundle.putBoolean("listAll",true);	
-						intent.putExtras(bundle);
-						Ctxt.startActivity(intent);
-			}	
-		});
+       
 //        final ActionBar actionBar = getActionBar();
 //        BitmapDrawable background = new BitmapDrawable(BitmapFactory.decodeResource(getResources(), R.drawable.bg_topbar));
 //        actionBar.setBackgroundDrawable(background);
-        //com.andriod.tailorassist.screen.Styles.setActionBarStyle(getActionBar(), getResources());
+//        com.andriod.tailorassist.screen.Styles.setActionBarStyle(getActionBar(), getResources());
     }
 
-    
-    /** Called when the user clicks the new Customer button */
+    public void listAll(View view) {
+
+		Bundle bundle = new Bundle();			
+		bundle.putString("custName","");	
+//		
+//		Intent intent = new Intent(Ctxt,SearchCustomerByName.class);				
+//		/* sending the customer details to next activity 			 */						
+//		intent.putExtras(bundle);			
+//		
+//		//start the activity						
+//		Ctxt.startActivity(intent);		
+		Intent intent = new Intent(Ctxt,SearchableActivity.class );
+		bundle.putBoolean("listAll",true);	
+		intent.putExtras(bundle);
+		Ctxt.startActivity(intent);
+    }
     public void newCustHome(View view) {
     	
     	
@@ -64,6 +57,7 @@ public class Matrix extends Activity {
     	startActivity(intent);
     	
     }
+    /** Called when the user clicks the new Customer button */
     
 	 public void findCustomer(View view) {
 	        
@@ -73,19 +67,19 @@ public class Matrix extends Activity {
 			Intent intent = new Intent(this,SearchableActivity.class );
 	    	startActivity(intent);	
 	  }
-	/* public boolean onCreateOptionsMenu(Menu menu) {
-		    // Inflate the options menu from XML
-		    MenuInflater inflater = getMenuInflater();
-		    inflater.inflate(R.menu.options_menu, menu);
-
-		    
-		    // Get the SearchView and set the searchable configuration
-		    SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-		    SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
-//		    Log.d("TEST", "ComponentName : "+new ComponentName(getApplicationContext(), "com.andriod.tailorassist.SearchableActivity"));
-		    searchView.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(getApplicationContext(), "com.andriod.tailorassist.SearchableActivity")));
-		    searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
-		    
-		    return true;
-		}*/
+//	 public boolean onCreateOptionsMenu(Menu menu) {
+//		    // Inflate the options menu from XML
+//		    MenuInflater inflater = getMenuInflater();
+//		    inflater.inflate(R.menu.options_menu, menu);
+//
+//		    
+//		    // Get the SearchView and set the searchable configuration
+//		    SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+//		    SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+////		    Log.d("TEST", "ComponentName : "+new ComponentName(getApplicationContext(), "com.andriod.tailorassist.SearchableActivity"));
+//		    searchView.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(getApplicationContext(), "com.andriod.tailorassist.SearchableActivity")));
+//		    searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+//		    
+//		    return true;
+//		}
 }
