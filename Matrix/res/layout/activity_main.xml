@@ -1,118 +1,77 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    style="@style/AppTheme"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    
-    android:background="@drawable/home_bg"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent" >
 
-    <RelativeLayout
-        android:id="@+id/home_Imagebutton_container"
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/home_top_chk_bar" >
+    </LinearLayout>
+
+    <GridLayout
+        android:id="@+id/buttonGrid"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginRight="14dp"
-        android:layout_marginTop="180dp" >
-<TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
- >
+        android:layout_below="@+id/header"
+        android:background="@drawable/home_navigation_bg"
+        android:columnCount="2"
+        android:paddingBottom="15dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingTop="15dp" >
 
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" 
-            android:layout_gravity="center_horizontal"
-            >
+        <ImageButton
+            android:id="@+id/imgBtn_add"
+            android:layout_column="0"
+            android:layout_gravity="left|top"
+            android:layout_row="0"
+            android:background="@android:color/transparent"
+            android:onClick="newCustHome"
+            android:src="@drawable/home_btn_add" 
+            android:contentDescription="@string/contentDescImgBtn_add" />
 
-            <ImageButton
-                android:id="@+id/home_imageButtonSearh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="findCustomer"
-                android:src="@drawable/home_search_icon"
-                android:background="@android:color/transparent"
-                 />
+        <ImageButton
+            android:id="@+id/imgBtn_search"
+            android:layout_column="1"
+            android:layout_gravity="right|top"
+            android:layout_row="0"
+            android:background="@android:color/transparent"
+            android:onClick="findCustomer"
+            android:src="@drawable/home_btn_search" 
+            android:contentDescription="@string/contentDescImgBtn_search" />
 
-            <Space
-                android:layout_width="60dp"
-                android:layout_height="wrap_content" />
+        <ImageButton
+            android:id="@+id/imgBtn_all"
+            android:layout_column="0"
+            android:layout_gravity="left|bottom"
+            android:layout_row="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/home_btn_all"
+            android:contentDescription="@string/contentDescImgBtn_all" />
 
-            <ImageButton
-                android:id="@+id/home_imageButtonAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="newCustHome"
-                android:background="@android:color/transparent"
-                android:src="@drawable/home_add_icon" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="40dp" >
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <ImageButton
-                android:id="@+id/viewAll_cust"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:src="@drawable/home_all_icon" 
-                android:onClick="listAll"/>
-
-            <Space
-                android:layout_width="60dp"
-                android:layout_height="wrap_content" />
-
-            <ImageButton
-                android:id="@+id/home_imageButtonCalendar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:src="@drawable/home_calendar_icon" />
-
-        </TableRow>
-
-    </TableLayout>
-        <RelativeLayout
-            android:id="@+id/home_layout_btns_add_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:orientation="horizontal"
-            android:padding="50dp" >
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/home_layout_btns_all_calendar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@+id/home_layout_btns_add_search"
-            android:layout_centerHorizontal="true"
-            android:orientation="horizontal" >
-        </RelativeLayout>
-    </RelativeLayout>
+        <ImageButton
+            android:id="@+id/imgBtn_calendar"
+            android:layout_column="1"
+            android:layout_gravity="right|bottom"
+            android:layout_row="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/home_btn_calendar" 
+            android:onClick="listAll"
+            android:contentDescription="@string/contentDescImgBtn_calendar"/>
+    </GridLayout>
 
     <LinearLayout
-        android:id="@+id/home_bottom_banner_container"
+        android:id="@+id/home_banner_container"
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/home_Imagebutton_container" >
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/buttonGrid"
+        android:background="@drawable/home_banner"
+        android:orientation="horizontal" >
     </LinearLayout>
-
-    
 
 </RelativeLayout>
