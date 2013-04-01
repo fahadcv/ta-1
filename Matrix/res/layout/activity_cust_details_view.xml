@@ -133,7 +133,7 @@
                 android:id="@+id/btn_SearchResult_Edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                
                 android:background="@drawable/cust_details_btn_bg"
                 android:onClick="editMe"
                 android:text="@string/btnTxt_SearchResult_Edit"
@@ -147,7 +147,7 @@
                 android:id="@+id/btn_SearchResult_Delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                
                 android:background="@drawable/cust_details_btn_bg"
                 android:onClick="deleteMe"
                 android:text="@string/btnTxt_SearchResult_Delete"
@@ -176,7 +176,7 @@
                 android:id="@+id/btn_SearchResult_Home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                
                 android:background="@drawable/cust_details_btn_bg"
                 android:onClick="goHome"
                 android:text="@string/btnTxt_SearchResult_Home"
