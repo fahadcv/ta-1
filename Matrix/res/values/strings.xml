@@ -84,6 +84,6 @@
     <string name="contentDescImgBtn_search">find customer</string>
     <string name="contentDescImgBtn_add">add customer</string>
     <string name="buttonText_custDetails_addAnother">New</string>
-    <string name="button_Measurement_space">  </string>
+    <string name="button_Measurement_space">"  "</string>
 
 </resources>

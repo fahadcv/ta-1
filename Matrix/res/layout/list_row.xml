@@ -1,36 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="10dip" >
-   
-<TextView
+
+    <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/avatar_container"
+        android:text="title here.."
         android:textColor="#040404"
-        android:typeface="sans"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
-<TextView
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:typeface="sans" />
+
+    <TextView
         android:id="@+id/details"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/avatar_container"
+        android:text="details here.."
         android:textColor="#343434"
-        android:textSize="15sp"
-        android:layout_marginTop="1dip" />
-<TextView
-        android:id="@+id/custId"
+        android:textSize="25sp" />
+
+    <RelativeLayout
+        android:id="@+id/avatar_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/cutomer_avatar"
+        android:paddingBottom="12dp" >
+
+        <TextView
+            android:id="@+id/custId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:text="12345"
+            android:textSize="25sp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/nextArrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/title"
-        android:gravity="right"
+        android:layout_centerVertical="true"
         android:layout_marginRight="5dip"
-        android:textSize="15sp"
-        android:textColor="#10bcc9"
-        android:textStyle="bold"/>
+        android:gravity="right"
+        android:src="@drawable/list_view_arrow" />
+
 </RelativeLayout>
