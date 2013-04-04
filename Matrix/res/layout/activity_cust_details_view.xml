@@ -3,154 +3,144 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/bg_tylor"
-    android:paddingTop="30dp" 
- >
+    android:padding="20dp" >
 
-    <RelativeLayout
-        android:id="@+id/custdetail_view_main"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        
-        android:background="@drawable/bg_custdetailslip"
-        android:layout_centerHorizontal="true"
-        
-        >
+        android:orientation="vertical"
+        android:weightSum="10" >
 
         <RelativeLayout
-            android:id="@+id/custdetail_main"
+            android:id="@+id/custdetail_view_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="40dp"
-            >
-				<ImageView
-                        android:id="@+id/cust_view_name_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/text_newCustHome_name"
-                        android:src="@drawable/ic_person"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentTop="true"
-                        />
-				  <TextView
-                        android:id="@+id/cust_view_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
-                        android:textColor="#040404"
-                        android:textSize="30sp"
-                        android:textStyle="bold" 
-                        android:layout_toRightOf="@+id/cust_view_name_icon"
-                        android:layout_alignTop="@+id/cust_view_name_icon"
-                        android:text="Customer Name"
-                        android:layout_alignParentTop="true"/>
-<ImageView
-                        android:id="@+id/cust_view_mobile_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/text_newCustHome_mobile"
-                        android:src="@drawable/ic_mobile" 
-                        
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginTop="30dp"
-                        android:layout_below="@+id/cust_view_name_icon"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="20dp"
+            android:layout_weight="9"
+            android:background="@drawable/bg_custdetailslip"
+            android:clipChildren="false" >
 
-                    <TextView
-                        android:id="@+id/cust_view_mobile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
-                        android:textColor="#040404"
-                        android:textSize="20sp" 
-                        android:layout_toRightOf="@+id/cust_view_mobile_icon"
-                        android:layout_alignTop="@+id/cust_view_mobile_icon"
-                        android:layout_below="@+id/cust_view_name"
-                        android:text="9991110001"/>
-				   <ImageView
-                        android:id="@+id/cust_view_a_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/text_newCustHome_address"
-                        android:src="@drawable/ic_home"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginTop="30dp"
-                        android:layout_below="@+id/cust_view_mobile_icon" />
-
-                    <TextView
-                        android:id="@+id/cust_view_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="40dp"
-                        android:textColor="#040404"
-                        android:textSize="20sp"
-                        android:layout_toRightOf="@+id/cust_view_a_icon"
-                        android:layout_alignTop="@+id/cust_view_a_icon"
-                        android:layout_below="@+id/cust_view_mobile"
-                        android:text="KK Villa, Edappal" />
-				  
-            <ImageView 
-                android:id="@+id/cust_detail_divider"
-                android:layout_width="fill_parent"
+            <RelativeLayout
+                android:id="@+id/custdetail_main"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/cust_view_address"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:src="@drawable/separator"/>
+                android:layout_margin="60dp" >
 
-            <ListView
-                android:id="@+id/detail_view_measurments_list"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/cust_detail_divider"
-                android:layout_alignParentLeft="true"
-                android:divider="@drawable/separator"
-                
-               >
+                <ImageView
+                    android:id="@+id/cust_view_name_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:contentDescription="@string/text_newCustHome_name"
+                    android:src="@drawable/ic_person" />
 
-                <!-- <ImageView -->
-                <!-- android:id="@+id/iamge" -->
-                <!-- android:layout_width="wrap_content" -->
-                <!-- android:layout_height="fill_parent" -->
-                <!-- android:layout_margin="4dp" -->
-                <!-- android:contentDescription="@string/app_name" > -->
-                <!-- </ImageView> -->
+                <TextView
+                    android:id="@+id/cust_view_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignTop="@+id/cust_view_name_icon"
+                    android:layout_marginLeft="40dp"
+                    android:layout_toRightOf="@+id/cust_view_name_icon"
+                    android:text="Customer Name"
+                    android:textColor="#040404"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
 
+                <ImageView
+                    android:id="@+id/cust_view_mobile_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/cust_view_name_icon"
+                    android:layout_marginTop="30dp"
+                    android:contentDescription="@string/text_newCustHome_mobile"
+                    android:src="@drawable/ic_mobile" />
 
-                <!-- <TextView -->
-                <!-- android:id="@+id/text1" -->
-                <!-- android:layout_width="wrap_content" -->
-                <!-- android:layout_height="wrap_content" -->
-                <!-- android:layout_marginLeft="20dp" -->
-                <!-- android:layout_gravity="center_vertical" -->
-                <!-- android:padding="10dp" -->
-                <!-- android:paddingLeft="10dp" -->
-                <!-- android:text="@string/hello_world" -->
-                <!-- android:textColor="@android:color/black" -->
-                <!-- android:textStyle="bold" /> -->
-            </ListView>
+                <TextView
+                    android:id="@+id/cust_view_mobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/cust_view_mobile_icon"
+                    android:layout_below="@+id/cust_view_name"
+                    android:layout_marginLeft="40dp"
+                    android:layout_toRightOf="@+id/cust_view_mobile_icon"
+                    android:text="9991110001"
+                    android:textColor="#040404"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/cust_view_a_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/cust_view_mobile_icon"
+                    android:layout_marginTop="30dp"
+                    android:contentDescription="@string/text_newCustHome_address"
+                    android:src="@drawable/ic_home" />
+
+                <TextView
+                    android:id="@+id/cust_view_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/cust_view_a_icon"
+                    android:layout_below="@+id/cust_view_mobile"
+                    android:layout_marginLeft="40dp"
+                    android:layout_toRightOf="@+id/cust_view_a_icon"
+                    android:text="KK Villa, Edappal"
+                    android:textColor="#040404"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/cust_detail_divider"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cust_view_address"
+                    android:paddingBottom="20dp"
+                    android:paddingTop="20dp"
+                    android:src="@drawable/separator" />
+
+                <ListView
+                    android:id="@+id/detail_view_measurments_list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/cust_detail_divider"
+                    android:divider="@drawable/separator" >
+                </ListView>
+            </RelativeLayout>
         </RelativeLayout>
-</RelativeLayout>
+
         <LinearLayout
             android:id="@+id/cust_btn_line"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@+id/custdetail_view_main"
-            android:layout_marginTop="20dp"
-            
-            
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:divider="@drawable/ic_other"
+            android:dividerPadding="10dp"
             android:gravity="center_horizontal"
-            
-            >
+            android:showDividers="none|middle|end"
+            android:weightSum="3"
+            android:orientation="horizontal"
+            android:paddingRight="10dp" >
 
             <Button
                 android:id="@+id/btn_SearchResult_Edit"
-                
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-               
-                android:background="@drawable/btn_custedit"
+                
+                android:background="@drawable/cust_details_btn_bg"
                 android:onClick="editMe"
+                android:text="@string/btnTxt_SearchResult_Edit"
                 android:textColor="@color/Color_White"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                 />
+
             <!-- android:text="@string/btnTxt_SearchResult_Edit" -->
 
             <Button
@@ -158,35 +148,41 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 
-                android:background="@drawable/btn_custdelete"
+                android:background="@drawable/cust_details_btn_bg"
                 android:onClick="deleteMe"
+                android:text="@string/btnTxt_SearchResult_Delete"
                 android:textColor="@color/Color_White"
                 android:textStyle="bold" />
+
             <!-- android:text="@string/btnTxt_SearchResult_Delete" -->
 
-           
 
             <!-- android:text="@string/btnTxt_SearchResult_Home" -->
-            <!--      style="?android:attr/buttonStyleSmall" -->
-			<Button
-                android:id="@+id/btn_add_another_cust"
-           
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New"
-                android:background="@drawable/btn_custdone"
-                android:onClick="addAnother"
-                android:textColor="@color/Color_White" 
-                android:textStyle="bold"/>
-        </LinearLayout>
-         <Button
-             android:layout_marginTop="20dp"
+            <!-- style="?android:attr/buttonStyleSmall" -->
+
+<!--             <Button -->
+<!--                 android:id="@+id/btn_add_another_cust" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:layout_marginLeft="1dp" -->
+<!--                 android:layout_weight="1" -->
+<!--                 android:background="@drawable/cust_details_btn_bg" -->
+<!--                 android:onClick="addAnother" -->
+<!--                 android:text="@string/buttonText_custDetails_addAnother" -->
+<!--                 android:textColor="@color/Color_White" -->
+<!--                 android:textStyle="bold" /> -->
+
+            <Button
                 android:id="@+id/btn_SearchResult_Home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/cust_btn_line"
-                android:background="@drawable/btn_custdone"
+                
+                android:background="@drawable/cust_details_btn_bg"
                 android:onClick="goHome"
-                android:textColor="@color/Color_White" />
-    </RelativeLayout>
+                android:text="@string/btnTxt_SearchResult_Home"
+                android:textColor="@color/Color_White"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

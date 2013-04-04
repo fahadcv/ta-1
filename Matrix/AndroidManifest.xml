@@ -5,7 +5,7 @@
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="15" />
+        android:targetSdkVersion="16" />
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -69,24 +69,27 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.myfirstapp.FindCustomer" />
         </activity>
-
         <activity
             android:name=".MeasurementsEntryActivity"
             android:label="@string/title_activity_measurements_entry" >
-      <!--       <intent-filter>
+
+            <!--
+                 <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
            
             </intent-filter>
- -->        </activity>
-        
+            -->
+        </activity>
         <activity android:name=".SearchableActivity" >
-        <intent-filter>
-            <action android:name="android.intent.action.SEARCH" />
-        </intent-filter>
-        <meta-data android:name="android.app.searchable"
-                   android:resource="@xml/searchable"/>
-    </activity>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
     </application>
 
 </manifest>

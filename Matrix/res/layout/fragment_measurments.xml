@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_tylor" 
-    style="@style/AppTheme">
- <EditText
+    android:padding="40dp"
+    android:background="@drawable/bg_tylor" >
+
+    <EditText
         android:id="@+id/editText_measurement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="false"
         android:layout_margin="3dp"
-        android:background="@drawable/bg_edittext_large"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/measurement_text_field"
         android:ems="11"
         android:imeOptions="actionDone"
         android:inputType="textWebEditText|textMultiLine"
         android:paddingLeft="6dp"
         android:paddingTop="6dp"
-		android:layout_marginTop="10dp" 
         android:textColor="@color/Color_Black"
         android:textColorLink="@color/Color_Black"
         android:textStyle="normal" >
@@ -26,28 +27,22 @@
         <requestFocus />
     </EditText>
 
-    <Button
-        android:id="@+id/reset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/editText_measurement"
-        android:layout_below="@+id/editText_measurement"
-        android:onClick="clearMeasure"
-        android:text="@string/text_reset" />
+
 
     <HorizontalScrollView
         android:id="@+id/HorizontalScrollView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/reset" >
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/editText_measurement" >
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal"
             android:orientation="horizontal"
-            android:padding="5dp" 
-            android:layout_gravity="center_horizontal">
+            android:padding="5dp" >
 
             <Button
                 android:id="@+id/button1"
@@ -55,23 +50,25 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
-                android:background="@color/Color_Black"
+                android:background="@drawable/measurement_btn"
                 android:onClick="extraBtnclick"
                 android:text="@string/button_Measurement_OneByfour"
                 android:textColor="@color/Color_White"
-                android:textStyle="bold" />
+                android:textStyle="bold" 
+                android:textSize="25sp"/>
 
             <Button
-                android:id="@+id/button2"
+        	    android:id="@+id/reset"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
-                android:background="@color/Color_Black"
+                android:background="@drawable/measurement_btn"
                 android:onClick="extraBtnclick"
                 android:text="@string/button_Measurement_half"
                 android:textColor="@color/Color_White"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/button3"
@@ -79,11 +76,12 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
-                android:background="@color/Color_Black"
+                android:background="@drawable/measurement_btn"
                 android:onClick="extraBtnclick"
                 android:text="@string/button_Measurement_threeByFour"
                 android:textColor="@color/Color_White"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/button4"
@@ -91,11 +89,12 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
-                android:background="@color/Color_Black"
+                android:background="@drawable/measurement_btn"
                 android:onClick="extraBtnclick"
                 android:text="@string/button_Measurement_SmIn"
                 android:textColor="@color/Color_White"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="15sp"  />
 
             <Button
                 android:id="@+id/button5"
@@ -103,11 +102,12 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
-                android:background="@color/Color_Black"
+                android:background="@drawable/measurement_btn"
                 android:onClick="extraBtnclick"
                 android:text="@string/button_Measurement_LBT"
                 android:textColor="@color/Color_White"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="15sp" />
 
             <Button
                 android:id="@+id/button6"
@@ -115,12 +115,48 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
-                android:background="@color/Color_Black"
+                android:background="@drawable/measurement_btn"
                 android:onClick="extraBtnclick"
                 android:text="@string/button_Measurement_SmOut"
                 android:textColor="@color/Color_White"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="15sp" />
         </LinearLayout>
     </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText_measurement"
+        android:layout_below="@+id/HorizontalScrollView1"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal" >
+
+        <Button
+            android:id="@+id/space_btn"
+            style="?android:attr/buttonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@drawable/measurement_space"
+            android:onClick="extraBtnclick"
+            android:text="@string/button_Measurement_space"
+            android:textColor="@color/Color_White"
+            android:textStyle="bold" 
+            android:textSize="30sp"/>
+        <Button
+            android:id="@+id/clear_btn"
+            style="?android:attr/buttonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@drawable/measurement_clear"
+            android:onClick="clearMeasure"
+            android:text="@string/text_reset"
+            android:textColor="@color/Color_White"
+            android:textStyle="bold"
+            android:textSize="15sp" />        
+        
+    </LinearLayout>
 
 </RelativeLayout>
