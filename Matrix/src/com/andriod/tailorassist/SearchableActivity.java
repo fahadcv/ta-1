@@ -184,7 +184,7 @@ public class SearchableActivity extends ListActivity {
 		ListView listView = getListView();
 
 		listView.setDivider(listItemDivider);
-		listView.setBackground(listBackground);
+//		listView.setBackground(listBackground);
 		// if(listView.getCount()<=0){
 		// TextView empty = (TextView) findViewById(android.R.id.empty);
 		// if (query != null && query.trim().length() > 0)
