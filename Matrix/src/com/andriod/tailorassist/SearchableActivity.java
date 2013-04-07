@@ -171,6 +171,7 @@ public class SearchableActivity extends ListActivity {
 																		// to
 																		// those
 																		// columns.
+		
 		// Bind to our new adapter.
 		setListAdapter(adapter);
 

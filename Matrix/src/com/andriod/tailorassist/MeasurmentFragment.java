@@ -1,5 +1,7 @@
 package com.andriod.tailorassist;
 
+import com.andriod.tailorassist.conf.AppConfig;
+
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,12 +9,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
 import android.widget.EditText;
 
 public class MeasurmentFragment extends Fragment {
 	String caption;
 	EditText measurementField ;
 	String measurmentText;
+	String[] extraButtons;
+	int type;
 //	boolean changesSaved;
 	public MeasurmentFragment(String caption){
 		this.caption = "Enter "+caption+" Details";
@@ -22,7 +27,11 @@ public class MeasurmentFragment extends Fragment {
 //    	measurementField.setHint(caption);
 //		changesSaved = true;
 	}
-
+	public MeasurmentFragment(String caption, int type){
+		this(caption);
+		this.extraButtons = AppConfig.extraButtons(type);
+		this.type = type;
+	}
 	@Override
 	    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 	        // Inflate the layout for this fragment
@@ -33,6 +42,7 @@ public class MeasurmentFragment extends Fragment {
 		 if(measurmentText != null){
 			 measurementField.setText(measurmentText);
 		 }
+		 addExtraButtons(extraButtons);
 	        return view;
 	    }
 //	public void clearMeasure(View v){
@@ -86,5 +96,12 @@ public class MeasurmentFragment extends Fragment {
 	{
 		return (Util.isEmpty(measurmentText) && (measurementField == null || Util.isEmpty(measurementField.getText().toString()))
 				|| (measurementField != null && measurementField.getText()!=null && measurementField.getText().toString().trim().equals(measurmentText))) ;
+	}
+	private void addExtraButtons(String extraButtons[]){
+		if(extraButtons != null){
+			for(String extraBtn: extraButtons){
+//				btn.setText(extraBtn);TODO
+			}
+		}
 	}
 }

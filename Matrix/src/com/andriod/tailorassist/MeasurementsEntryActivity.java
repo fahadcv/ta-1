@@ -3,6 +3,8 @@ package com.andriod.tailorassist;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.andriod.tailorassist.conf.AppConfig;
+
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -39,10 +41,7 @@ public class MeasurementsEntryActivity extends FragmentActivity implements Actio
      */
 	Context Ctxt;
     SectionsPagerAdapter mSectionsPagerAdapter;
-    final public static int SHIRT = 0;
-    final public static int TROUSER = 1;    
-    final public static int OTHERS = 2;
-
+   
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -140,10 +139,10 @@ public class MeasurementsEntryActivity extends FragmentActivity implements Actio
 //    		String measurement = fragment.getMeasurement();     
 //    		if(measurement.isEmpty()) measurement = "";
     		switch (i) {
-			case SHIRT:
+			case AppConfig.Types.SHIRT:
 				fragment.setMeasurement(custShirtDetails);
 				break;
-			case TROUSER:
+			case AppConfig.Types.TROUSER:
 				fragment.setMeasurement(custPantDetails);
 				break;
 			default:
@@ -269,10 +268,10 @@ public class MeasurementsEntryActivity extends FragmentActivity implements Actio
     		String measurement = fragment.getMeasurement();     
     		if(measurement.isEmpty()) measurement = "";
     		switch (i) {
-			case SHIRT:
+			case AppConfig.Types.SHIRT:
 				details.putString("shirtDetails", measurement);
 				break;
-			case TROUSER:
+			case AppConfig.Types.TROUSER:
 				details.putString("trouserDetails", measurement);
 				break;
 			default:
@@ -316,8 +315,8 @@ public class MeasurementsEntryActivity extends FragmentActivity implements Actio
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
             tabs = new ArrayList<Fragment>(3);
-            tabs.add(new MeasurmentFragment(getString(R.string.measurment_tab1_text)));
-            tabs.add(new MeasurmentFragment(getString(R.string.measurement_tab2_text)));
+            tabs.add(new MeasurmentFragment(getString(R.string.measurment_tab1_text), AppConfig.Types.SHIRT));
+            tabs.add(new MeasurmentFragment(getString(R.string.measurement_tab2_text), AppConfig.Types.TROUSER));
             tabs.add(new MeasurmentFragment(getString(R.string.measuremnet_tab3_text)));
         }
 
