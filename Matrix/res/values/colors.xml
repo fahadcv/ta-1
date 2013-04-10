@@ -16,5 +16,6 @@
     <color name="Color_lightSkyBlue">#BEBEBE</color>
     <color name="Color_lightSteelBlue">#B0C4DE</color>
     <color name="Color_cyn">#e0ffff</color>
+    <color name="Color_measurments_special_instruction_text" >#A9E2F3</color>
     
 </resources>

@@ -85,5 +85,9 @@
     <string name="contentDescImgBtn_add">add customer</string>
     <string name="buttonText_custDetails_addAnother">New</string>
     <string name="button_Measurement_space">"  "</string>
+    <string name="btnText_Measures_other">Others..</string>
+    <string name="btnText_Measures_close">close</string>
+    <string name="hnt_txt_special_instruction_click">Click to add</string>
+    
 
 </resources>
