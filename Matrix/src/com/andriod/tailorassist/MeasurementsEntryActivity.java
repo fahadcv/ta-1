@@ -420,9 +420,12 @@ public class MeasurementsEntryActivity extends FragmentActivity implements Actio
     	return changesSaved;
     }
     
+	public void showOtherMeasures(View v){
+		MeasurmentFragment msrFragment = (MeasurmentFragment)mSectionsPagerAdapter.getItem(mViewPager.getCurrentItem());
+		msrFragment.doOtherBtns(v);
+	}
+    
     public Dialog unSavedAlert(final int moveTo){
-    	
-    	
     	
     	
     	AlertDialog.Builder builder = new AlertDialog.Builder(Ctxt);

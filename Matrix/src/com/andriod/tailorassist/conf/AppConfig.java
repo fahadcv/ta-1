@@ -7,8 +7,17 @@ public class AppConfig {
 		    final public static int OTHERS = 2;
 
 	}
-	static final String[] trouser = new String[]{"CM","NPC","S Pkt", "C Pkt","2Pleet","1Pleet"};
-	public static String[] extraButtons(int Type){
-		return trouser;
+	static final String[] trouser = new String[]{"CM","Side Pocket","I Pleet","NPC", "Cross Pocket","II Pleet"};
+	static final String[] shirt = new String[]{"Sm In","Sm Out","LBT"};
+	
+	public static String[] extraButtons(int type){
+		switch (type){
+		
+		case Types.SHIRT:
+			return shirt;
+		case Types.TROUSER:
+			return trouser;
+		}
+		return (null);
 	}
 }

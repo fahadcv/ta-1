@@ -28,7 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SearchableActivity extends ListActivity {
-
+	Cursor mCursor ;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// setContentView(R.layout.activity_searchable);
@@ -141,12 +141,14 @@ public class SearchableActivity extends ListActivity {
 		// Put a managed wrapper around the retrieved cursor so we don't have to
 		// worry about
 		// requerying or closing it as the activity changes state.
-		CustomerTable customerTable = new CustomerTable(getApplicationContext());
-		customerTable.open();
-		Cursor mCursor = customerTable.searchCustomer(query);
-		// customerTable.close();
-		startManagingCursor(mCursor);
-
+		if(mCursor == null || mCursor.isClosed()){
+			CustomerTable customerTable = new CustomerTable(getApplicationContext());
+			customerTable.open();
+			
+			mCursor = customerTable.searchCustomer(query);
+			// customerTable.close();
+			startManagingCursor(mCursor);
+		}
 		// Now create a new list adapter bound to the cursor.
 		// SimpleListAdapter is designed for binding to a Cursor.
 
@@ -299,6 +301,13 @@ public class SearchableActivity extends ListActivity {
 			return super.onOptionsItemSelected(item);
 		}
 
+	}
+
+	@Override
+	protected void onDestroy() {
+		if(mCursor != null)
+			mCursor.close();
+		super.onDestroy();
 	}
 
 	public void goHome() {
