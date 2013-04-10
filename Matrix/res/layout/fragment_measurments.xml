@@ -3,8 +3,8 @@
     style="@style/AppTheme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="40dp"
-    android:background="@drawable/bg_tylor" >
+    android:background="@drawable/bg_tylor"
+    android:padding="40dp" >
 
     <EditText
         android:id="@+id/editText_measurement"
@@ -27,136 +27,196 @@
         <requestFocus />
     </EditText>
 
+    <!-- <HorizontalScrollView -->
+    <!-- android:id="@+id/HorizontalScrollView1" -->
+    <!-- android:layout_width="fill_parent" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_alignParentRight="true" -->
+    <!-- android:layout_marginTop="30dp" -->
+    <!-- android:layout_below="@+id/editText_measurement" > -->
+
+<!--     <LinearLayout -->
+<!--         android:id="@+id/extraBtnContainer" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignParentRight="true" -->
+<!--         android:layout_below="@+id/editText_measurement" -->
+<!--         android:layout_gravity="center_horizontal" -->
+<!--         android:orientation="horizontal" -->
+<!--         android:padding="5dp" > -->
+
+       
+
+<!--         <Button -->
+<!--         android:id="@+id/button4" -->
+<!--         style="?android:attr/buttonStyleSmall" -->
+<!--         android:layout_width="fill_parent" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_margin="2dp" -->
+<!--         android:background="@drawable/measurement_btn" -->
+<!--         android:onClick="extraBtnclick" -->
+<!--         android:text="@string/button_Measurement_SmIn" -->
+<!--         android:textColor="@color/Color_White" -->
+<!--         android:textStyle="bold" -->
+<!--         android:textSize="15sp"  /> -->
 
 
-    <HorizontalScrollView
-        android:id="@+id/HorizontalScrollView1"
-        android:layout_width="fill_parent"
+<!--         <Button -->
+<!--         android:id="@+id/button5" -->
+<!--         style="?android:attr/buttonStyleSmall" -->
+<!--         android:layout_width="fill_parent" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_margin="2dp" -->
+<!--         android:background="@drawable/measurement_btn" -->
+<!--         android:onClick="extraBtnclick" -->
+<!--         android:text="@string/button_Measurement_LBT" -->
+<!--         android:textColor="@color/Color_White" -->
+<!--         android:textStyle="bold" -->
+<!--         android:textSize="15sp" /> -->
+
+
+<!--         <Button -->
+<!--         android:id="@+id/button6" -->
+<!--         style="?android:attr/buttonStyleSmall" -->
+<!--         android:layout_width="fill_parent" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_margin="2dp" -->
+<!--         android:background="@drawable/measurement_btn" -->
+<!--         android:onClick="extraBtnclick" -->
+<!--         android:text="@string/button_Measurement_SmOut" -->
+<!--         android:textColor="@color/Color_White" -->
+<!--         android:textStyle="bold" -->
+<!--         android:textSize="15sp" /> -->
+<!--     </LinearLayout> -->
+    <!-- </HorizontalScrollView> -->
+   <TableLayout
+        android:id="@+id/OtherMeasuremntTable"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/editText_measurement" >
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal"
-            android:padding="5dp" >
-
-            <Button
-                android:id="@+id/button1"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:background="@drawable/measurement_btn"
-                android:onClick="extraBtnclick"
-                android:text="@string/button_Measurement_OneByfour"
-                android:textColor="@color/Color_White"
-                android:textStyle="bold" 
-                android:textSize="25sp"/>
-
-            <Button
-        	    android:id="@+id/reset"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:background="@drawable/measurement_btn"
-                android:onClick="extraBtnclick"
-                android:text="@string/button_Measurement_half"
-                android:textColor="@color/Color_White"
-                android:textStyle="bold"
-                android:textSize="25sp" />
-
-            <Button
-                android:id="@+id/button3"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:background="@drawable/measurement_btn"
-                android:onClick="extraBtnclick"
-                android:text="@string/button_Measurement_threeByFour"
-                android:textColor="@color/Color_White"
-                android:textStyle="bold"
-                android:textSize="25sp" />
-
-            <Button
-                android:id="@+id/button4"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:background="@drawable/measurement_btn"
-                android:onClick="extraBtnclick"
-                android:text="@string/button_Measurement_SmIn"
-                android:textColor="@color/Color_White"
-                android:textStyle="bold"
-                android:textSize="15sp"  />
-
-            <Button
-                android:id="@+id/button5"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:background="@drawable/measurement_btn"
-                android:onClick="extraBtnclick"
-                android:text="@string/button_Measurement_LBT"
-                android:textColor="@color/Color_White"
-                android:textStyle="bold"
-                android:textSize="15sp" />
-
-            <Button
-                android:id="@+id/button6"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:background="@drawable/measurement_btn"
-                android:onClick="extraBtnclick"
-                android:text="@string/button_Measurement_SmOut"
-                android:textColor="@color/Color_White"
-                android:textStyle="bold"
-                android:textSize="15sp" />
-        </LinearLayout>
-    </HorizontalScrollView>
-
+        android:layout_below="@+id/editText_measurement"
+        	android:layout_marginTop="5dp"
+        	android:background="@color/Color_measurments_special_instruction_text"
+        	
+        	
+        	android:layout_marginBottom="15dp"
+        android:layout_alignParentLeft="true"
+        android:padding="5dp"
+        android:visibility="visible"
+         >
+       
+    </TableLayout>
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:id="@+id/btn_container2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText_measurement"
-        android:layout_below="@+id/HorizontalScrollView1"
+        
+        android:layout_below="@+id/OtherMeasuremntTable"
+        android:gravity="center_horizontal"
         android:orientation="horizontal"
-        android:gravity="center_horizontal" >
+        
+         >
 
+        <!-- <RelativeLayout -->
+        <!-- android:layout_width="wrap_content" -->
+        <!-- android:layout_height="wrap_content" > -->
+
+
+        <!-- <Button -->
+        <!-- android:id="@+id/others_btn" -->
+        <!-- style="?android:attr/buttonStyle" -->
+        <!-- android:layout_width="wrap_content" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:layout_margin="2dp" -->
+        <!-- android:layout_marginRight="2dp" -->
+        <!-- android:background="@drawable/measurement_space" -->
+        <!-- android:onClick="showOtherMeasures" -->
+        <!-- android:text="@string/btnText_Measures_other" -->
+        <!-- android:textColor="@color/Color_White" -->
+        <!-- android:textSize="25sp" -->
+        <!-- android:textStyle="bold" /> -->
+
+
+        <!-- <TableLayout -->
+        <!-- android:id="@+id/OtherMeasuremntTable" -->
+        <!-- android:layout_width="wrap_content" -->
+
+
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:layout_below="@+id/others_btn" -->
+        <!-- android:background="@color/Color_White" -->
+        <!-- android:visibility="invisible" > -->
+
+
+        <!-- </TableLayout> -->
+
+
+        <!-- </RelativeLayout> -->
+ <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:background="@drawable/measurement_btn"
+            android:onClick="extraBtnclick"
+            android:text="@string/button_Measurement_OneByfour"
+            android:textColor="@color/Color_White"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/reset"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:background="@drawable/measurement_btn"
+            android:onClick="extraBtnclick"
+            android:text="@string/button_Measurement_half"
+            android:textColor="@color/Color_White"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button3"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:background="@drawable/measurement_btn"
+            android:onClick="extraBtnclick"
+            android:text="@string/button_Measurement_threeByFour"
+            android:textColor="@color/Color_White"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+        
         <Button
             android:id="@+id/space_btn"
             style="?android:attr/buttonStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="2dp"
-            android:background="@drawable/measurement_space"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/cust_details_btn_bg"
             android:onClick="extraBtnclick"
             android:text="@string/button_Measurement_space"
             android:textColor="@color/Color_White"
-            android:textStyle="bold" 
-            android:textSize="30sp"/>
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
         <Button
             android:id="@+id/clear_btn"
             style="?android:attr/buttonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@drawable/measurement_clear"
             android:onClick="clearMeasure"
             android:text="@string/text_reset"
             android:textColor="@color/Color_White"
-            android:textStyle="bold"
-            android:textSize="15sp" />        
-        
+            android:textSize="15sp"
+            android:textStyle="bold" />
     </LinearLayout>
+
+ 
 
 </RelativeLayout>
