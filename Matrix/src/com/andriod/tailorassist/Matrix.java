@@ -27,8 +27,9 @@ public class Matrix extends Activity {
         setContentView(R.layout.activity_main);
         
         Ctxt = this;
-       
-//        final ActionBar actionBar = getActionBar();
+//       
+        final ActionBar actionBar = getActionBar();
+        actionBar.hide();
 //        BitmapDrawable background = new BitmapDrawable(BitmapFactory.decodeResource(getResources(), R.drawable.bg_topbar));
 //        actionBar.setBackgroundDrawable(background);
 //        com.andriod.tailorassist.screen.Styles.setActionBarStyle(getActionBar(), getResources());
