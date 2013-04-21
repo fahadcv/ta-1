@@ -68,6 +68,15 @@ public class Matrix extends Activity {
 			Intent intent = new Intent(this,SearchableActivity.class );
 	    	startActivity(intent);	
 	  }
+	 
+	 public void showCalendar(View view) {
+	        
+//	    	Intent intent = new Intent(this,FindCustomer.class );
+//	    	startActivity(intent);	    	
+		 
+			Intent intent = new Intent(this, CalendarActivity.class);
+	    	startActivity(intent);	
+	  }
 //	 public boolean onCreateOptionsMenu(Menu menu) {
 //		    // Inflate the options menu from XML
 //		    MenuInflater inflater = getMenuInflater();

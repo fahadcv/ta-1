@@ -61,7 +61,7 @@
             android:layout_row="1"
             android:background="@android:color/transparent"
             android:src="@drawable/home_btn_calendar" 
-            android:onClick="listAll"
+            android:onClick="showCalendar"
             android:contentDescription="@string/contentDescImgBtn_calendar"/>
     </GridLayout>
 
