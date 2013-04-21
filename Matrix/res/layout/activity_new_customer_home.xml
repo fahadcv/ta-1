@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="top"
     android:padding="10dip"
-    android:paddingLeft="25dip"
-    android:paddingRight="25dip"
+
     android:background="@drawable/bg_tylor"
     android:orientation="vertical" >
 
@@ -13,15 +12,15 @@
         android:id="@+id/editText_name"
         style="@android:style/Widget.DeviceDefault.EditText"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_edittext_small"
         android:ems="10"
+        android:paddingLeft="5dp"
         android:hint="@string/text_newCustHome_name"
         android:inputType="textPersonName"
         android:textColor="@color/Color_Black" 
-        android:layout_marginTop="6dip"
-        android:paddingRight="6dip"
-        android:paddingLeft="6dip">
+        android:layout_marginTop="6dp"
+        >
 
         <requestFocus />
     </EditText>
@@ -30,28 +29,28 @@
         android:id="@+id/editText_mobileNumber"
         style="@android:style/Widget.DeviceDefault.EditText"
         android:layout_width="fill_parent"
-        android:layout_height="52dp"
+        android:layout_height="wrap_content"
         android:ems="10"
+        android:paddingLeft="5dp"
         android:textColor="@color/Color_Black"
         android:hint="@string/text_newCustHome_mobile"
         android:background="@drawable/bg_edittext_small"
-        android:layout_marginTop="6dip"
-        android:paddingLeft="6dip"
-        android:paddingRight="6dip"
+        android:layout_marginTop="10dip"
+        
         android:inputType="number" />
 
     <EditText
         android:id="@+id/editText_address"
         android:layout_width="fill_parent"
-        android:layout_height="190dp"
+        android:layout_height="wrap_content"
         android:ems="10"
+        android:paddingLeft="5dp"
         android:textColor="@color/Color_Black"
         android:hint="@string/text_newCustHome_address"
         android:inputType="textMultiLine|textPostalAddress|"
-        android:layout_marginTop="6dip"
+        android:layout_marginTop="10dp"
         android:background="@drawable/bg_edittext_large"
-        android:paddingLeft="6dip"
-        android:paddingRight="6dip"
+        
         />
 
     <Button
@@ -60,7 +59,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"        
         android:text="@string/button_newCustHomeAddMeasurement"
-        android:padding="10dip"
+        
+        android:layout_marginTop="10dp"
         android:background="@drawable/bg_button" />
 
 </LinearLayout>
