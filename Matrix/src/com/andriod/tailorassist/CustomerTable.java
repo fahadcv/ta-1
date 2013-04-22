@@ -16,6 +16,7 @@ public class CustomerTable {
 	public static final String KEY_PANTDETAILS = "cust_pant_measurments";
 	public static final String KEY_OTHERDETAILS = "cust_other_measurments";
 	public static final String KEY_ROWID = "_id";
+	public static final String KEY_MEASURE_DATE = "cust_measurement_date";
 	
 	public static final String TAG = "CutomerTable";
 	private DatabaseHelper mDbHelper;
@@ -23,13 +24,15 @@ public class CustomerTable {
 	
 	private static final String DATABASE_NAME = "customer_database";
 	public static final String DATABASE_TABLE = "customer";
-	public static final int DATABASE_VERSION = 4;
+	public static final int DATABASE_VERSION = 5;
 	
 	// Database creation SQL statement
 	
 	public static final String DATABASE_CREATE = "create table "+DATABASE_TABLE + "(" + KEY_ROWID +
 			" integer primary key autoincrement, " + KEY_NAME +" text not null, "+ KEY_MOBILE + " text not null, "+
 			KEY_ADDRESS +" text, " + KEY_SHIRTDETAILS + " text, "+ KEY_PANTDETAILS +" text, "+ KEY_OTHERDETAILS +" text);";
+	
+	public static String DATABASE_ALTER = "alter table "+DATABASE_TABLE+ " add column "+ KEY_MEASURE_DATE +" text " ;
 	
 	private Context mCtx;
 	
@@ -48,9 +51,10 @@ public class CustomerTable {
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
 			Log.w(TAG, "Upgrading database from version "+ oldVersion +" to " + newVersion + 
-					" which wil destroy all old data");
-			db.execSQL("DROP TABLE IF EXISTS "+ DATABASE_CREATE);
-			onCreate(db);
+					" which wil not destroy all old data");
+			//db.execSQL("DROP TABLE IF EXISTS "+ DATABASE_CREATE);	
+			db.execSQL(DATABASE_ALTER);
+//			onCreate(db);
 		}		
 	}
 	// constructor - takes the context to allow the database to be opened/created
@@ -71,7 +75,7 @@ public class CustomerTable {
 		mDbHelper.close();
 		Log.i(TAG, "Closing Database connections....");
 	}
-	public long addCustomer(String custName, String custMobile, String custAddress, String custShirt, String custPant, String custOther){
+	public long addCustomer(String custName, String custMobile, String custAddress, String custShirt, String custPant, String custOther, String measureDate){
 		
 		Log.i(TAG, "Inserting records...");
 		ContentValues initialValues = new ContentValues();
@@ -81,6 +85,7 @@ public class CustomerTable {
 		initialValues.put(KEY_SHIRTDETAILS,custShirt);
 		initialValues.put(KEY_PANTDETAILS,custPant);
 		initialValues.put(KEY_OTHERDETAILS,custOther);
+		initialValues.put(KEY_MEASURE_DATE,measureDate);
 		
 		return mDb.insert(DATABASE_TABLE, null, initialValues);		
 	}
@@ -105,7 +110,7 @@ public class CustomerTable {
 	public Cursor fetchCustomerById(long custId)throws SQLException {
 		
 		Cursor mCursor = 
-				 mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,KEY_NAME,KEY_MOBILE, KEY_ADDRESS, KEY_SHIRTDETAILS, KEY_PANTDETAILS, KEY_OTHERDETAILS},
+				 mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,KEY_NAME,KEY_MOBILE, KEY_ADDRESS, KEY_SHIRTDETAILS, KEY_PANTDETAILS, KEY_OTHERDETAILS,KEY_MEASURE_DATE},
 							KEY_ROWID + "=" + custId, null, null, null, null, null);		
 		if (mCursor !=null){
 			mCursor.moveToFirst();
@@ -150,7 +155,7 @@ public class CustomerTable {
 		
 	}
 	public boolean updateCustomer(long custId, String custName, String custMobile, String custAddress, String custShirt, 
-			String custPant, String custOther){
+			String custPant, String custOther, String measureDate){
 		
 		ContentValues args = new ContentValues();
 		args.put(KEY_NAME, custName);
@@ -159,6 +164,7 @@ public class CustomerTable {
 		args.put(KEY_SHIRTDETAILS, custShirt);
 		args.put(KEY_PANTDETAILS, custPant);
 		args.put(KEY_OTHERDETAILS, custOther);
+		args.put(KEY_MEASURE_DATE, measureDate);
 		return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + custId, null)>0;
 		
 	}	

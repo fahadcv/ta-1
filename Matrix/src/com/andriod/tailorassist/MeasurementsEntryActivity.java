@@ -1,21 +1,20 @@
 package com.andriod.tailorassist;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import com.andriod.tailorassist.conf.AppConfig;
-
 import android.app.ActionBar;
+import android.app.ActionBar.Tab;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.provider.Settings.System;
@@ -30,11 +29,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
+
+import com.andriod.tailorassist.conf.AppConfig;
 
 public class MeasurementsEntryActivity extends FragmentActivity implements
 		ActionBar.TabListener {
+	SimpleDateFormat DBdateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
 	final public static int PROFILE = 1;
 	final public static int HOME = 2;
 	private static final int VIRTUAL_KEY = 0;
@@ -333,9 +335,24 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 		return empty;
 	}
 
+	// public void onTabUnselected(ActionBar.Tab tab,
+	// FragmentTransaction fragmentTransaction) {
+	//
+	// }
+	//
+	// public void onTabSelected(ActionBar.Tab tab,
+	// FragmentTransaction fragmentTransaction) {
+	// // When the given tab is selected, switch to the corresponding page in
+	// // the ViewPager.
+	// mViewPager.setCurrentItem(tab.getPosition());
+	//
+	// }
+
 	public void onTabUnselected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
-
+		// tab.getCustomView().setBackgroundResource(R.drawable.measurement_nav);
+		Log.d("tabCustomTesting", "at onTabUnselected");
+		tab.setCustomView(R.layout.tab_default);
 	}
 
 	public void onTabSelected(ActionBar.Tab tab,
@@ -343,7 +360,18 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 		// When the given tab is selected, switch to the corresponding page in
 		// the ViewPager.
 		mViewPager.setCurrentItem(tab.getPosition());
-
+		tab.setCustomView(R.layout.tab_selected);
+		ActionBar actionBar = getActionBar();
+		for (int i = 0; i < actionBar.getTabCount(); i++) {
+			ActionBar.Tab tab1 = actionBar.getTabAt(i);
+			if (tab1 != tab) {
+				Log.d("tabCustomTesting", "at not selected tab ");
+				tab1.setCustomView(R.layout.tab_default);
+			} else {
+				Log.d("tabCustomTesting", "at selected tab ");
+			}
+		}
+		// tab.getCustomView().setBackgroundResource(R.drawable.measurement_nav_selected);
 	}
 
 	public void onTabReselected(ActionBar.Tab tab,
@@ -409,6 +437,8 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 		String custShirt = extras.getString("shirtDetails");// ((EditText)findViewById(R.id.editText_measurement)).getText().toString();
 		String custPant = extras.getString("trouserDetails");// ((EditText)findViewById(R.id.editText_measurement)).getText().toString();;
 		String custOther = extras.getString("otherDetails");
+		String entryDate = DBdateFormat.format(new Date());
+
 		if ((custShirt.length() == 0) && (custPant.length() == 0)
 				&& (custOther.length() == 0)) {
 
@@ -428,10 +458,10 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 			custTable.open();
 			if (custId <= 0) {
 				newCustNo = custTable.addCustomer(custName, custMobile,
-						custAddress, custShirt, custPant, custOther);
+						custAddress, custShirt, custPant, custOther, entryDate);
 			} else {
 				if (custTable.updateCustomer(custId, custName, custMobile,
-						custAddress, custShirt, custPant, custOther)) {
+						custAddress, custShirt, custPant, custOther, entryDate)) {
 					newCustNo = custId;
 				}
 			}
@@ -464,14 +494,16 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 		MeasurmentFragment msrmntFrg = (MeasurmentFragment) mSectionsPagerAdapter
 				.getItem(mViewPager.getCurrentItem());
 		msrmntFrg.appendMeasurement(btnTxt);
-		//getApplicationContext().getSystemService(VIBRATOR_SERVICE)
-//		System mySystemSettings = new Settings.System();
+		// getApplicationContext().getSystemService(VIBRATOR_SERVICE)
+		// System mySystemSettings = new Settings.System();
 		ContentResolver mContentResolver = this.getContentResolver();
-		int val = System.getInt(mContentResolver, Settings.System.HAPTIC_FEEDBACK_ENABLED, 0);
-		boolean mHapticEnabled = val !=0;
-		if (mHapticEnabled){
-			v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);		}
-		
+		int val = System.getInt(mContentResolver,
+				Settings.System.HAPTIC_FEEDBACK_ENABLED, 0);
+		boolean mHapticEnabled = val != 0;
+		if (mHapticEnabled) {
+			v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+		}
+
 		// EditText measurementField;
 		// measurementField =
 		// (EditText)msrmntFrg.getText(R.id.editText_measurement);
