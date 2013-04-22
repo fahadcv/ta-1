@@ -21,6 +21,19 @@
             android:background="@drawable/bg_custdetailslip"
             android:clipChildren="false" >
 
+            <TextView
+                android:id="@+id/mesurement_entry_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="15dp"
+                android:paddingRight="20dp"
+                android:text="measurement date"
+                android:textColor="#040404"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
             <RelativeLayout
                 android:id="@+id/custdetail_main"
                 android:layout_width="wrap_content"
@@ -124,22 +137,20 @@
             android:divider="@drawable/ic_other"
             android:dividerPadding="10dp"
             android:gravity="center_horizontal"
-            android:showDividers="none|middle|end"
-            android:weightSum="3"
             android:orientation="horizontal"
-            android:paddingRight="10dp" >
+            android:paddingRight="10dp"
+            android:showDividers="none|middle|end"
+            android:weightSum="3" >
 
             <Button
                 android:id="@+id/btn_SearchResult_Edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                
                 android:background="@drawable/cust_details_btn_bg"
                 android:onClick="editMe"
                 android:text="@string/btnTxt_SearchResult_Edit"
                 android:textColor="@color/Color_White"
-                android:textStyle="bold"
-                 />
+                android:textStyle="bold" />
 
             <!-- android:text="@string/btnTxt_SearchResult_Edit" -->
 
@@ -147,7 +158,6 @@
                 android:id="@+id/btn_SearchResult_Delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                
                 android:background="@drawable/cust_details_btn_bg"
                 android:onClick="deleteMe"
                 android:text="@string/btnTxt_SearchResult_Delete"
@@ -160,23 +170,23 @@
             <!-- android:text="@string/btnTxt_SearchResult_Home" -->
             <!-- style="?android:attr/buttonStyleSmall" -->
 
-<!--             <Button -->
-<!--                 android:id="@+id/btn_add_another_cust" -->
-<!--                 android:layout_width="wrap_content" -->
-<!--                 android:layout_height="wrap_content" -->
-<!--                 android:layout_marginLeft="1dp" -->
-<!--                 android:layout_weight="1" -->
-<!--                 android:background="@drawable/cust_details_btn_bg" -->
-<!--                 android:onClick="addAnother" -->
-<!--                 android:text="@string/buttonText_custDetails_addAnother" -->
-<!--                 android:textColor="@color/Color_White" -->
-<!--                 android:textStyle="bold" /> -->
+
+            <!-- <Button -->
+            <!-- android:id="@+id/btn_add_another_cust" -->
+            <!-- android:layout_width="wrap_content" -->
+            <!-- android:layout_height="wrap_content" -->
+            <!-- android:layout_marginLeft="1dp" -->
+            <!-- android:layout_weight="1" -->
+            <!-- android:background="@drawable/cust_details_btn_bg" -->
+            <!-- android:onClick="addAnother" -->
+            <!-- android:text="@string/buttonText_custDetails_addAnother" -->
+            <!-- android:textColor="@color/Color_White" -->
+            <!-- android:textStyle="bold" /> -->
 
             <Button
                 android:id="@+id/btn_SearchResult_Home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                
                 android:background="@drawable/cust_details_btn_bg"
                 android:onClick="goHome"
                 android:text="@string/btnTxt_SearchResult_Home"
