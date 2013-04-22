@@ -2,6 +2,7 @@ package com.andriod.tailorassist;
 
 
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +32,7 @@ public class ShowCustomerDetails extends Activity {
 	long custId;
 	int[] img = { R.drawable.ic_shirt, R.drawable.ic_trouser, R.drawable.ic_trouser  };
 	String titles[] = new String[]{"Shirt", "Trouser", "Others"};
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +59,9 @@ public class ShowCustomerDetails extends Activity {
         	String custShirtDetails = newCustDetails.getString(newCustDetails.getColumnIndex(custTable.KEY_SHIRTDETAILS));
         	String custPantDetails = newCustDetails.getString(newCustDetails.getColumnIndex(custTable.KEY_PANTDETAILS));
         	String custOtherDetails = newCustDetails.getString(newCustDetails.getColumnIndex(custTable.KEY_OTHERDETAILS));
+        	String entryDate = newCustDetails.getString(newCustDetails.getColumnIndex(custTable.KEY_MEASURE_DATE));
+        	entryDate = Util.convertToDateview(entryDate);
+        	
 //        	// getting the string for the details
 //        	newCustDetails.close();
 //        	StringBuilder detailText = new StringBuilder();
@@ -90,7 +95,8 @@ public class ShowCustomerDetails extends Activity {
 //        	
 //        	TextView custDetailsView = (TextView) findViewById(R.id.textView_ShowCustDetails);
 //        	custDetailsView.setText(detailText.toString());   
-    		
+        	TextView measurementEntryDate = (TextView)findViewById(R.id.mesurement_entry_date);
+        	measurementEntryDate.setText(entryDate);
     		TextView name = (TextView)findViewById(R.id.cust_view_name);
     		name.setText(custName);
     		TextView mobile = (TextView)findViewById(R.id.cust_view_mobile);
