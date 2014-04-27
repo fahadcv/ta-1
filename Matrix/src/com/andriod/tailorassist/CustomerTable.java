@@ -55,6 +55,7 @@ public class CustomerTable {
 			//db.execSQL("DROP TABLE IF EXISTS "+ DATABASE_CREATE);	
 			db.execSQL(DATABASE_ALTER);
 //			onCreate(db);
+			Log.w(TAG, "Successfully Upgraded database from version "+ oldVersion +" to " + newVersion );
 		}		
 	}
 	// constructor - takes the context to allow the database to be opened/created
@@ -144,7 +145,7 @@ public class CustomerTable {
 	public Cursor searchCustomer(String custValue)throws SQLException {
 		if(Util.isNumeric(custValue)){
 			Cursor mCursor = mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID, KEY_NAME,KEY_MOBILE},
-					KEY_MOBILE+ "=" + custValue+" OR "+KEY_ROWID + "=" + custValue, null, null, null, null, null);
+					KEY_MOBILE+ "=" + custValue+" OR "+KEY_ROWID + "=" + custValue+" OR "+KEY_NAME + " like '%" + custValue +"%'", null, null, null, null, null);
 			if (mCursor !=null){
 				mCursor.moveToFirst();
 			}

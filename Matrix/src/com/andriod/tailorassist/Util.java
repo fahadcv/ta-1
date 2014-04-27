@@ -2,6 +2,7 @@ package com.andriod.tailorassist;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import android.widget.EditText;
 
@@ -67,5 +68,8 @@ public class Util {
 			e.printStackTrace();
 		}
 		return "";
+	}
+	public static String getCurrentDbDate(){
+		return DBdateFormat.format(new Date());
 	}
 }

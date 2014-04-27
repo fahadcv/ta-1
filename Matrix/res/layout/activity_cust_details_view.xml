@@ -29,10 +29,10 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="15dp"
                 android:paddingRight="20dp"
-                android:text="measurement date"
+                android:text="14/03/2013"
                 android:textColor="#040404"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"
+                android:textStyle="normal" />
 
             <RelativeLayout
                 android:id="@+id/custdetail_main"

@@ -1,8 +1,6 @@
 package com.andriod.tailorassist;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import android.app.ActionBar;
@@ -32,14 +30,16 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.andriod.tailorassist.conf.AppConfig;
+//import android.app.Fragment;
+//import android.app.FragmentManager;
 
 public class MeasurementsEntryActivity extends FragmentActivity implements
 		ActionBar.TabListener {
-	SimpleDateFormat DBdateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//	SimpleDateFormat DBdateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 	final public static int PROFILE = 1;
 	final public static int HOME = 2;
-	private static final int VIRTUAL_KEY = 0;
+//	private static final int VIRTUAL_KEY = 0;
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -190,10 +190,11 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
+		boolean flag = false;
 		switch (item.getItemId()) {
 		case R.id.save_btn:
 			if (!isChangesSaved()) {
-				return save();
+				flag = save();
 			} else {
 				if (isEmpty()) {
 
@@ -202,31 +203,36 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 							R.string.alertTxt_NewCustomer_Measuremetns_emptyMsg,
 							Toast.LENGTH_LONG).show();
 				}
-				return false;
+				flag = false;
+				
 			}
+			break;
 		case android.R.id.home:
 			if (isChangesSaved()) {
-				return goHome();
+				flag = goHome();
 			} else {
 				unSavedAlert(HOME).show();
 
 			}
-			return false;
-
+			flag = false;
+			break;
 		case R.id.editCustProfile_btn:
 			if (isChangesSaved()) {
-				return editProfile();
+				flag = editProfile();
 			} else {
 				unSavedAlert(PROFILE).show();
 
 			}
-			return false;
+			flag = false;
+			break;
 		default:
-			return super.onOptionsItemSelected(item);
+			flag = super.onOptionsItemSelected(item);
 		}
+		return flag;
 	}
 
 	public boolean save() {
+		boolean flag = false;
 		Bundle details = this.getIntent().getExtras();
 		details.putLong("custId", custId);
 		putMeasurmentDetails(details);
@@ -266,9 +272,9 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 			intent.putExtras(bundle);
 			// start the activity
 			Ctxt.startActivity(intent);
-			return true;
+			flag = true;
 		}
-		return false;
+		return flag;
 	}
 
 	public boolean goHome() {
@@ -437,7 +443,7 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 		String custShirt = extras.getString("shirtDetails");// ((EditText)findViewById(R.id.editText_measurement)).getText().toString();
 		String custPant = extras.getString("trouserDetails");// ((EditText)findViewById(R.id.editText_measurement)).getText().toString();;
 		String custOther = extras.getString("otherDetails");
-		String entryDate = DBdateFormat.format(new Date());
+		String entryDate = Util.getCurrentDbDate();
 
 		if ((custShirt.length() == 0) && (custPant.length() == 0)
 				&& (custOther.length() == 0)) {
