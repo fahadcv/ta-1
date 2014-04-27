@@ -1,10 +1,7 @@
 package com.andriod.tailorassist;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils.TruncateAt;
@@ -52,6 +49,7 @@ public class MeasurmentFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+	//	  setTheme(SampleList.THEME); //Used for theme switching in samples
 		// Inflate the layout for this fragment
 		View view = inflater.inflate(R.layout.fragment_measurments, container,
 				false);

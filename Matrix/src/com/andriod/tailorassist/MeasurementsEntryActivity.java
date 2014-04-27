@@ -13,6 +13,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.provider.Settings.System;
@@ -22,13 +25,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andriod.tailorassist.R.drawable;
 import com.andriod.tailorassist.conf.AppConfig;
 //import android.app.Fragment;
 //import android.app.FragmentManager;
@@ -36,7 +42,7 @@ import com.andriod.tailorassist.conf.AppConfig;
 public class MeasurementsEntryActivity extends FragmentActivity implements
 		ActionBar.TabListener {
 //	SimpleDateFormat DBdateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
+   static volatile boolean listenerInProgress;
 	final public static int PROFILE = 1;
 	final public static int HOME = 2;
 //	private static final int VIRTUAL_KEY = 0;
@@ -64,6 +70,7 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		try {
+			Log.d("onCreate", "onCreate....");
 			Ctxt = this;
 			super.onCreate(savedInstanceState);
 
@@ -106,10 +113,36 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 				// TabListener interface, as the
 				// listener for when this tab is selected.
 				Tab tab = actionBar.newTab();
-				tab.setText(mSectionsPagerAdapter.getPageTitle(i));
+				
 				// tab.setIcon(icon)
+//				if (i != 0) {
+//					Log.d("tabCustomTesting", "onCreate at not selected tab ");
+//					
+////					tab.setCustomView(R.layout.tab_default);
+////					TextView tabView = new TextView(Ctxt);
+////					tabView.setBackgroundResource(drawable.measurement_nav);
+////					tabView.setText(mSectionsPagerAdapter.getPageTitle(i));
+////					tabView.setTextColor(Color.blue(120));
+////					tabView.setTextSize(20);
+////					tabView.setAllCaps(true);
+//////					tabView.setTop(12);
+////					tabView.setGravity(Gravity.CENTER);
+//					TextView tabView = createTabView(mSectionsPagerAdapter.getPageTitle(i), selected)
+//					tab.setCustomView(tabView);
+//					
+//				} else {
+//					Log.d("tabCustomTesting", "onCreate at selected tab ");
+////					tab.setCustomView(R.layout.tab_selected);
+//					TextView tabView = new TextView(Ctxt);
+//					tabView.setBackgroundResource(drawable.measurement_nav_selected);
+//					tabView.setText(mSectionsPagerAdapter.getPageTitle(i));
+//					tab.setCustomView(tabView);
+//				}
+				TextView tabView = createTabView(mSectionsPagerAdapter.getPageTitle(i), i==0);
+				tab.setCustomView(tabView);
 				tab.setTabListener(this);
 				actionBar.addTab(tab);
+				tab.setText(mSectionsPagerAdapter.getPageTitle(i));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -358,24 +391,65 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 			FragmentTransaction fragmentTransaction) {
 		// tab.getCustomView().setBackgroundResource(R.drawable.measurement_nav);
 		Log.d("tabCustomTesting", "at onTabUnselected");
-		tab.setCustomView(R.layout.tab_default);
+	//	tab.setCustomView(R.layout.tab_default);
 	}
 
 	public void onTabSelected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
+		Log.d("tabCustomTesting", "listenerInProgress "+listenerInProgress);
+		if(!listenerInProgress){
+			listenerInProgress = true;
 		// When the given tab is selected, switch to the corresponding page in
 		// the ViewPager.
 		mViewPager.setCurrentItem(tab.getPosition());
-		tab.setCustomView(R.layout.tab_selected);
+		//tab.setCustomView(R.layout.tab_selected);
 		ActionBar actionBar = getActionBar();
 		for (int i = 0; i < actionBar.getTabCount(); i++) {
 			ActionBar.Tab tab1 = actionBar.getTabAt(i);
-			if (tab1 != tab) {
-				Log.d("tabCustomTesting", "at not selected tab ");
-				tab1.setCustomView(R.layout.tab_default);
-			} else {
-				Log.d("tabCustomTesting", "at selected tab ");
-			}
+//			CharSequence text = tab1.getText();
+//			Log.d("tabCustomTesting", " current tab "+text+ " i "+i);
+//			Log.d("tabCustomTesting", " current tab "+mSectionsPagerAdapter.getPageTitle(i));
+//			
+//			
+//			if (tab1 != tab) {
+//				Log.d("tabCustomTesting", "onTabSelected at NOT selected tab ");
+//				actionBar.removeTab(tab1);
+////				tab1.setCustomView(R.layout.tab_default);
+////				tab1.setText(mSectionsPagerAdapter.getPageTitle(i));
+//				TextView tabView = new TextView(Ctxt);
+//				tabView.setBackgroundResource(drawable.measurement_nav);
+//				tabView.setText(mSectionsPagerAdapter.getPageTitle(i));
+//				tab1.setCustomView(tabView);
+//				
+//				actionBar.addTab(tab1, i, false);
+//			} else {
+//				actionBar.removeTab(tab1);
+//				Log.d("tabCustomTesting", "onTabSelected at selected tab "+i);
+////				tab1.setCustomView(R.layout.tab_selected);
+//////				tab1.getCustomView().setBackground(Drawable.createFromPath(drawable.measurement_nav));
+////				tab1.getCustomView().set
+////				tab1.setText(mSectionsPagerAdapter.getPageTitle(i));
+//				
+////				View tabCustView = new android.widget.ImageView();
+//				TextView tabView = new TextView(Ctxt);
+//				tabView.setBackgroundResource(drawable.measurement_nav_selected);
+//				tabView.setText(mSectionsPagerAdapter.getPageTitle(i));
+//				tab1.setCustomView(tabView);
+//				actionBar.addTab(tab1, i, true);
+//			}
+			actionBar.removeTab(tab1);
+			TextView tabView = createTabView(mSectionsPagerAdapter.getPageTitle(i), tab1 == tab);
+			tab1.setCustomView(tabView);
+			actionBar.addTab(tab1, i, tab1 == tab);
+//			Log.d("tabCustomTesting", "remove Tab Listner");
+	//		tab1.setTabListener(null);
+			
+	//		tab1.setTabListener(this);
+//			Log.d("tabCustomTesting", "added Tab Listner");
+		}
+		listenerInProgress = false;
+		}else{
+			Log.d("tabCustomTesting", "listenerInProgress "+tab.getText());
 		}
 		// tab.getCustomView().setBackgroundResource(R.drawable.measurement_nav_selected);
 	}
@@ -577,5 +651,23 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 					}
 				});
 		return builder.create();
+	}
+	private TextView createTabView(CharSequence text, boolean selected){
+		TextView tabView = new TextView(Ctxt);
+		if(selected){
+			tabView.setBackgroundResource(drawable.measurement_nav_selected);
+			
+			tabView.setTextColor(Color.WHITE);
+		}else{
+			tabView.setBackgroundResource(drawable.measurement_nav);
+			
+			tabView.setTextColor(Color.rgb(0, 22, 99));
+		}
+		tabView.setText(text);
+		tabView.setTextSize(20);
+		tabView.setAllCaps(true);
+//		tabView.setTop(12);
+		tabView.setGravity(Gravity.CENTER);
+		return tabView;
 	}
 }

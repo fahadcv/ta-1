@@ -89,7 +89,7 @@
     <string name="btnText_Measures_other">Others..</string>
     <string name="btnText_Measures_close">close</string>
     <string name="hnt_txt_special_instruction_click">Click to add</string>
-    <string name="title_activity_calendar">CalendarActivity</string>
+    <string name="title_activity_calendar">Calendar</string>
     <string name="action_settings">Settings</string>
 
 </resources>
