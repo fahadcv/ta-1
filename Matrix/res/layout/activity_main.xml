@@ -72,7 +72,9 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/buttonGrid"
         android:background="@drawable/home_banner"
+        android:contentDescription="@string/main_product_discription"
         android:orientation="horizontal" >
+        
     </LinearLayout>
 
 </RelativeLayout>

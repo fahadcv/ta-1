@@ -30,7 +30,7 @@ public class CustomerTable {
 	
 	public static final String DATABASE_CREATE = "create table "+DATABASE_TABLE + "(" + KEY_ROWID +
 			" integer primary key autoincrement, " + KEY_NAME +" text not null, "+ KEY_MOBILE + " text not null, "+
-			KEY_ADDRESS +" text, " + KEY_SHIRTDETAILS + " text, "+ KEY_PANTDETAILS +" text, "+ KEY_OTHERDETAILS +" text);";
+			KEY_ADDRESS +" text, " + KEY_SHIRTDETAILS + " text, "+ KEY_PANTDETAILS +" text, "+ KEY_OTHERDETAILS +" text, "+ KEY_MEASURE_DATE +" text );";
 	
 	public static String DATABASE_ALTER = "alter table "+DATABASE_TABLE+ " add column "+ KEY_MEASURE_DATE +" text " ;
 	

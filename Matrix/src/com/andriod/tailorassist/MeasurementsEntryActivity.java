@@ -680,6 +680,7 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 		tabView.setTextSize(20);
 		tabView.setAllCaps(true);
 //		tabView.setTop(12);
+		tabView.setPadding(0, 0, 0, 0);
 		tabView.setGravity(Gravity.CENTER);
 		return tabView;
 	}
