@@ -65,16 +65,17 @@
             android:contentDescription="@string/contentDescImgBtn_calendar"/>
     </GridLayout>
 
-    <LinearLayout
-        android:id="@+id/home_banner_container"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+  
+        <TextView 
+            android:id="@+id/home_banner_container"
+            android:contentDescription="@string/main_product_discription"
+            android:gravity="center"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
         android:layout_below="@+id/buttonGrid"
         android:background="@drawable/home_banner"
-        android:contentDescription="@string/main_product_discription"
-        android:orientation="horizontal" >
-        
-    </LinearLayout>
+        android:orientation="horizontal" />
+
 
 </RelativeLayout>
