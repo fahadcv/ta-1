@@ -12,10 +12,9 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.provider.Settings.System;
@@ -35,6 +34,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andriod.tailorassist.R.drawable;
+import com.andriod.tailorassist.R.layout;
 import com.andriod.tailorassist.conf.AppConfig;
 //import android.app.Fragment;
 //import android.app.FragmentManager;
@@ -42,7 +42,7 @@ import com.andriod.tailorassist.conf.AppConfig;
 public class MeasurementsEntryActivity extends FragmentActivity implements
 		ActionBar.TabListener {
 //	SimpleDateFormat DBdateFormat = new SimpleDateFormat("yyyy-MM-dd");
-   static volatile boolean listenerInProgress;
+//   static volatile boolean listenerInProgress;
 	final public static int PROFILE = 1;
 	final public static int HOME = 2;
 //	private static final int VIRTUAL_KEY = 0;
@@ -138,7 +138,7 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 //					tabView.setText(mSectionsPagerAdapter.getPageTitle(i));
 //					tab.setCustomView(tabView);
 //				}
-				TextView tabView = createTabView(mSectionsPagerAdapter.getPageTitle(i), i==0);
+				TextView tabView = createTabView(mSectionsPagerAdapter.getPageTitle(i));
 				tab.setCustomView(tabView);
 				tab.setTabListener(this);
 				actionBar.addTab(tab);
@@ -396,61 +396,62 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 
 	public void onTabSelected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
-		Log.d("tabCustomTesting", "listenerInProgress "+listenerInProgress);
-		if(!listenerInProgress){
-			listenerInProgress = true;
-		// When the given tab is selected, switch to the corresponding page in
-		// the ViewPager.
+	//	Log.d("tabCustomTesting", "listenerInProgress "+listenerInProgress);
 		mViewPager.setCurrentItem(tab.getPosition());
-		//tab.setCustomView(R.layout.tab_selected);
-		ActionBar actionBar = getActionBar();
-		for (int i = 0; i < actionBar.getTabCount(); i++) {
-			ActionBar.Tab tab1 = actionBar.getTabAt(i);
-//			CharSequence text = tab1.getText();
-//			Log.d("tabCustomTesting", " current tab "+text+ " i "+i);
-//			Log.d("tabCustomTesting", " current tab "+mSectionsPagerAdapter.getPageTitle(i));
+//		if(!listenerInProgress){
+//			listenerInProgress = true;
+//		// When the given tab is selected, switch to the corresponding page in
+//		// the ViewPager.
+//		mViewPager.setCurrentItem(tab.getPosition());
+//		//tab.setCustomView(R.layout.tab_selected);
+////		ActionBar actionBar = getActionBar();
+////		for (int i = 0; i < actionBar.getTabCount(); i++) {
+////			ActionBar.Tab tab1 = actionBar.getTabAt(i);
+////			CharSequence text = tab1.getText();
+////			Log.d("tabCustomTesting", " current tab "+text+ " i "+i);
+////			Log.d("tabCustomTesting", " current tab "+mSectionsPagerAdapter.getPageTitle(i));
+////			
+////			
+////			if (tab1 != tab) {
+////				Log.d("tabCustomTesting", "onTabSelected at NOT selected tab ");
+////				actionBar.removeTab(tab1);
+//////				tab1.setCustomView(R.layout.tab_default);
+//////				tab1.setText(mSectionsPagerAdapter.getPageTitle(i));
+////				TextView tabView = new TextView(Ctxt);
+////				tabView.setBackgroundResource(drawable.measurement_nav);
+////				tabView.setText(mSectionsPagerAdapter.getPageTitle(i));
+////				tab1.setCustomView(tabView);
+////				
+////				actionBar.addTab(tab1, i, false);
+////			} else {
+////				actionBar.removeTab(tab1);
+////				Log.d("tabCustomTesting", "onTabSelected at selected tab "+i);
+//////				tab1.setCustomView(R.layout.tab_selected);
+////////				tab1.getCustomView().setBackground(Drawable.createFromPath(drawable.measurement_nav));
+//////				tab1.getCustomView().set
+//////				tab1.setText(mSectionsPagerAdapter.getPageTitle(i));
+////				
+//////				View tabCustView = new android.widget.ImageView();
+////				TextView tabView = new TextView(Ctxt);
+////				tabView.setBackgroundResource(drawable.measurement_nav_selected);
+////				tabView.setText(mSectionsPagerAdapter.getPageTitle(i));
+////				tab1.setCustomView(tabView);
+////				actionBar.addTab(tab1, i, true);
+////			}
+////			actionBar.removeTab(tab1);
+////			TextView tabView = createTabView(mSectionsPagerAdapter.getPageTitle(i), tab1 == tab);
+////			tab1.setCustomView(tabView);
+////			actionBar.addTab(tab1, i, tab1 == tab);
+////			Log.d("tabCustomTesting", "remove Tab Listner");
+//	//		tab1.setTabListener(null);
 //			
-//			
-//			if (tab1 != tab) {
-//				Log.d("tabCustomTesting", "onTabSelected at NOT selected tab ");
-//				actionBar.removeTab(tab1);
-////				tab1.setCustomView(R.layout.tab_default);
-////				tab1.setText(mSectionsPagerAdapter.getPageTitle(i));
-//				TextView tabView = new TextView(Ctxt);
-//				tabView.setBackgroundResource(drawable.measurement_nav);
-//				tabView.setText(mSectionsPagerAdapter.getPageTitle(i));
-//				tab1.setCustomView(tabView);
-//				
-//				actionBar.addTab(tab1, i, false);
-//			} else {
-//				actionBar.removeTab(tab1);
-//				Log.d("tabCustomTesting", "onTabSelected at selected tab "+i);
-////				tab1.setCustomView(R.layout.tab_selected);
-//////				tab1.getCustomView().setBackground(Drawable.createFromPath(drawable.measurement_nav));
-////				tab1.getCustomView().set
-////				tab1.setText(mSectionsPagerAdapter.getPageTitle(i));
-//				
-////				View tabCustView = new android.widget.ImageView();
-//				TextView tabView = new TextView(Ctxt);
-//				tabView.setBackgroundResource(drawable.measurement_nav_selected);
-//				tabView.setText(mSectionsPagerAdapter.getPageTitle(i));
-//				tab1.setCustomView(tabView);
-//				actionBar.addTab(tab1, i, true);
-//			}
-			actionBar.removeTab(tab1);
-			TextView tabView = createTabView(mSectionsPagerAdapter.getPageTitle(i), tab1 == tab);
-			tab1.setCustomView(tabView);
-			actionBar.addTab(tab1, i, tab1 == tab);
-//			Log.d("tabCustomTesting", "remove Tab Listner");
-	//		tab1.setTabListener(null);
-			
-	//		tab1.setTabListener(this);
-//			Log.d("tabCustomTesting", "added Tab Listner");
-		}
-		listenerInProgress = false;
-		}else{
-			Log.d("tabCustomTesting", "listenerInProgress "+tab.getText());
-		}
+//	//		tab1.setTabListener(this);
+////			Log.d("tabCustomTesting", "added Tab Listner");
+////		}
+//		listenerInProgress = false;
+//		}else{
+//			Log.d("tabCustomTesting", "listenerInProgress "+tab.getText());
+//		}
 		// tab.getCustomView().setBackgroundResource(R.drawable.measurement_nav_selected);
 	}
 
@@ -652,17 +653,29 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 				});
 		return builder.create();
 	}
-	private TextView createTabView(CharSequence text, boolean selected){
+	private TextView createTabView(CharSequence text){
 		TextView tabView = new TextView(Ctxt);
-		if(selected){
-			tabView.setBackgroundResource(drawable.measurement_nav_selected);
-			
-			tabView.setTextColor(Color.WHITE);
-		}else{
-			tabView.setBackgroundResource(drawable.measurement_nav);
-			
-			tabView.setTextColor(Color.rgb(0, 22, 99));
-		}
+//		if(selected){
+//			tabView.setBackgroundResource(drawable.measurement_nav_selected);
+//			
+//			tabView.setTextColor(Color.WHITE);
+//		}else{
+//			tabView.setBackgroundResource(drawable.measurement_nav);
+//			
+//			tabView.setTextColor(Color.rgb(0, 22, 99));
+//		}
+		tabView.setBackgroundResource(layout.tab_image);
+		ColorStateList tabColorStateList = new ColorStateList(
+                new int[][]{
+                        new int[]{android.R.attr.state_selected}, 
+                        new int[]{-android.R.attr.state_selected}
+                },
+                new int[] {
+                    Color.WHITE, 
+                    Color.rgb(0, 22, 99)
+                }
+            );
+		tabView.setTextColor(tabColorStateList);
 		tabView.setText(text);
 		tabView.setTextSize(20);
 		tabView.setAllCaps(true);
