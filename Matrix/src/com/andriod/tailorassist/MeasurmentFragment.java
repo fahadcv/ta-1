@@ -1,5 +1,6 @@
 package com.andriod.tailorassist;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -15,10 +16,9 @@ import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
 import com.andriod.tailorassist.conf.AppConfig;
 
-public class MeasurmentFragment extends Fragment {
+@SuppressLint("ValidFragment") public class MeasurmentFragment extends Fragment {
 	String caption;
 	EditText measurementField;
 	String measurmentText;
@@ -27,9 +27,11 @@ public class MeasurmentFragment extends Fragment {
 	TableLayout OtherMeasures;
 	int ems = 10;
 	int top = 1, left = 1, bottom = 1, right = 1;
-	int rowTop = 5, rowLeft = 1, rowBottom = 5, rowRight = 1;
+	@SuppressLint("ValidFragment") int rowTop = 5, rowLeft = 1, rowBottom = 5, rowRight = 1;
 	int fontSize = 18;
 	// boolean changesSaved;
+	
+	public MeasurmentFragment(){}
 	public MeasurmentFragment(String caption) {
 		this.caption = "Enter " + caption + " Details";
 		// EditText measurementField;
@@ -62,6 +64,8 @@ public class MeasurmentFragment extends Fragment {
 		measurementField.setHint(caption);
 		if (measurmentText != null) {
 			measurementField.setText(measurmentText);
+//		}else{
+//			measurementField = new 
 		}
 
 		// OtherMeasures.addV
@@ -131,14 +135,28 @@ public class MeasurmentFragment extends Fragment {
 
 	}
 
-	public boolean isChangesSaved() {
-		return (Util.isEmpty(measurmentText)
-				&& (measurementField == null || Util.isEmpty(measurementField
-						.getText().toString())) || (measurementField != null
-				&& measurementField.getText() != null && measurementField
-				.getText().toString().trim().equals(measurmentText)));
-	}
+//	public boolean isChangesSaved() {
+//
+//		
+////		return ((Util.isEmpty(measurmentText) && (measurementField == null || Util.isEmpty(measurementField
+////						.getText().toString().trim())))
+////						|| (measurementField != null &&  measurementField.getText() != null && Util.isEmpty( measurementField
+////								.getText().toString()) && 
+////						(Util.isEmpty(measurmentText) || measurementField
+////				.getText().toString().trim().equals(measurmentText))));
+//		Util.isModified(measurementField, measurmentText)
+//	}
+	public boolean isModified() {
 
+		
+//		return ((Util.isEmpty(measurmentText) && (measurementField == null || Util.isEmpty(measurementField
+//						.getText().toString().trim())))
+//						|| (measurementField != null &&  measurementField.getText() != null && Util.isEmpty( measurementField
+//								.getText().toString()) && 
+//						(Util.isEmpty(measurmentText) || measurementField
+//				.getText().toString().trim().equals(measurmentText))));
+		return Util.isModified(measurementField, measurmentText);
+	}
 	private void addExtraButtons(String extraButtons[],
 			TableLayout targetTable, Context context) {
 		if (extraButtons != null) {

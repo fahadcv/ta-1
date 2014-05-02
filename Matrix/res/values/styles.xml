@@ -31,6 +31,16 @@
         <item name="android:background">@color/Color_darkRed</item>
         <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
     </style>   
-     
+    
 
+<style name="AppTabTheme" parent="AppTheme">
+    <item name="android:actionBarTabStyle">@style/Ta.ActionBar.Tab</item>
+      
+</style>
+ 
+<style name="Ta.ActionBar.Tab" parent="AppTheme">
+     <item name="android:showDividers">none</item>
+     <item name="android:backgroundSplit">@color/Color_measurments_special_instruction_text</item>
+     <item name="android:backgroundStacked">@color/Color_measurments_special_instruction_text</item>   
+         </style>
 </resources>

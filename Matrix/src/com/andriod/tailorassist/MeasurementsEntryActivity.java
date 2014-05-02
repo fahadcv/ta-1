@@ -30,6 +30,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -85,7 +86,7 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 			final ActionBar actionBar = getActionBar();
 			actionBar.setDisplayShowTitleEnabled(false);
 			actionBar.setHomeButtonEnabled(true);
-
+//			actionBar.set
 			actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 			// Set up the ViewPager with the sections adapter.
@@ -142,7 +143,7 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 				tab.setCustomView(tabView);
 				tab.setTabListener(this);
 				actionBar.addTab(tab);
-				tab.setText(mSectionsPagerAdapter.getPageTitle(i));
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -156,6 +157,7 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 			custId = extras.getLong("custId");
 
 			initEdit("preserve".equals(extras.getString("changes")));
+			//
 		} else {
 			custId = -1;
 
@@ -165,6 +167,7 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 	}
 
 	private void initEdit(boolean preserveProfileChanges) {
+		if(custId > 0){
 		CustomerTable custTable = new CustomerTable(this);
 		custTable.open();
 		Cursor newCustDetails = custTable.fetchCustomerById(custId);
@@ -176,6 +179,7 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 					.getColumnIndex(custTable.KEY_MOBILE));
 			custAddress = newCustDetails.getString(newCustDetails
 					.getColumnIndex(custTable.KEY_ADDRESS));
+			Log.d("MeasurementsEntryActivity.initEdit", "preserveProfileChanges custName "+custName+" custAddress "+custMobile+" custAddress "+custAddress);
 		}
 		String custShirtDetails = newCustDetails.getString(newCustDetails
 				.getColumnIndex(custTable.KEY_SHIRTDETAILS));
@@ -208,6 +212,9 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 				fragment.setMeasurement(custOtherDetails);
 				break;
 			}
+		}
+		}else{
+			Log.d("customerInitEdit", "can't get cust info from DB .....custId is " + custId);
 		}
 	}
 
@@ -309,7 +316,19 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 		}
 		return flag;
 	}
-
+	private boolean updateCustomerProfile(){
+    	Log.d("updateCustomerProfile", " updating custId "+custId);
+    	if(custId>0){
+    	
+    		CustomerTable custTable = new CustomerTable(this);
+        	custTable.open();
+    		custTable.updateCustomerProfile(custId, custName, custMobile, custAddress);   	
+    		custTable.close();
+        	return true;
+    	}else
+    		return false;
+    	
+    }
 	public boolean goHome() {
 		Intent intent = new Intent(this, Matrix.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -326,6 +345,7 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 		bundle.putString("custMobile", custMobile);
 		bundle.putString("custAddress", custAddress);
 		bundle.putString("mode", "edit");
+		bundle.putString("previous.screen", "measurment.edit");
 		putMeasurmentDetails(bundle);
 		intent1.putExtras(bundle);
 		startActivity(intent1);
@@ -603,11 +623,13 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 		for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
 			MeasurmentFragment fragment = (MeasurmentFragment) mSectionsPagerAdapter
 					.getItem(i);
-			if (!fragment.isChangesSaved()) {
+			if (fragment.isModified()) {
+				Log.d("isChangesSaved", "changesSaved false at "+i+" "+fragment.getCaption());
 				changesSaved = false;
 				break;
 			}
 		}
+		Log.d("isChangesSaved", "changesSaved "+changesSaved);
 		return changesSaved;
 	}
 
@@ -628,7 +650,10 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
 						save();
-						goHome();
+						if (moveTo == HOME)
+							goHome();
+						else if (moveTo == PROFILE)
+							editProfile();
 					}
 				});
 
@@ -684,4 +709,19 @@ public class MeasurementsEntryActivity extends FragmentActivity implements
 		tabView.setGravity(Gravity.CENTER);
 		return tabView;
 	}
+	 public void onBackPressed() {
+		 if (isChangesSaved()) {
+			 
+			 Bundle bundle = this.getIntent().getExtras();
+		        if(bundle != null && "profile.edit".equals(bundle.getString("previous.screen"))){
+		        	
+		        	editProfile();
+		        }else{
+		        	super.onBackPressed();
+		        }
+			} else {
+				unSavedAlert(PROFILE).show();
+
+			}
+	 }
 }

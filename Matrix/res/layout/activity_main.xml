@@ -8,7 +8,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/home_top_chk_bar" >
+        android:background="@drawable/home_top_chk_bar" 
+        android:orientation="horizontal">
     </LinearLayout>
 
     <GridLayout
@@ -71,7 +72,7 @@
             android:contentDescription="@string/main_product_discription"
             android:gravity="center"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_alignParentLeft="true"
         android:layout_below="@+id/buttonGrid"
         android:background="@drawable/home_banner"

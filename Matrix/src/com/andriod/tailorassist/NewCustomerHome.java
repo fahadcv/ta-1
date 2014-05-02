@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,9 +25,15 @@ public class NewCustomerHome extends Activity {
 	String custMobile;
 	String custAddress ;
 	
+	private void initValues(Bundle savedInstanceState){
+		if(savedInstanceState!= null && savedInstanceState.get("custId") != null){
+			custId =  savedInstanceState.getLong("custId");
+		}
+	}
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
-    	
+    	initValues(savedInstanceState);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_customer_home);    
         getActionBar().setHomeButtonEnabled(true);
@@ -42,15 +49,15 @@ public class NewCustomerHome extends Activity {
 			EditText Name = (EditText) findViewById(R.id.editText_name);
 			EditText Mobile = (EditText) findViewById(R.id.editText_mobileNumber);
 			EditText Address = (EditText) findViewById(R.id.editText_address);
-			custName = Name.getText().toString().trim();			
-			custMobile = Mobile.getText().toString().trim();			
-			custAddress = Address.getText().toString().trim();
+			String lcustName = Name.getText().toString().trim();			
+			String lcustMobile = Mobile.getText().toString().trim();			
+			String lcustAddress = Address.getText().toString().trim();
 			boolean valid = true;
-			if((custName.length()== 0) && (custMobile.length()== 0) ){
+			if((lcustName.length()== 0) && (lcustMobile.length()== 0) ){
 				valid = false;
 				Toast.makeText(Ctxt, R.string.alertTxt_NewCustomer_Name_mobile_empty, Toast.LENGTH_LONG).show();
 			}
-			if(custMobile.length()> 0 && !Util.isValidMobileNumber(custMobile)){
+			if(lcustMobile.length()> 0 && !Util.isValidMobileNumber(lcustMobile)){
 				valid = false;
 				Toast.makeText(Ctxt, R.string.alertTxt_NewCustomer_invalid_mobile, Toast.LENGTH_LONG).show();
 			}
@@ -62,15 +69,21 @@ public class NewCustomerHome extends Activity {
 				/* sending the customer details to next activity 			 */
 				Bundle bundle = new Bundle();
 				
-				bundle.putString("custName", custName);
-				bundle.putString("custMobile", custMobile);
-				bundle.putString("custAddress", custAddress);
+			
+				bundle.putString("previous.screen", "profile.edit");
 				if(edit){
 					bundle.putString("mode", "edit");
+					Log.d("", "going to edit measurment");
 					if(!isChangesSaved()){
+						custName = Name.getText().toString().trim();			
+						custMobile = Mobile.getText().toString().trim();			
+						custAddress = Address.getText().toString().trim();
 						bundle.putString("changes", "preserve");
+						Log.d("btnSAddMeasurement.setOnClickListener", "going to edit measurment with preserve profile edit");
 					}
-					
+					bundle.putString("custName", custName);
+					bundle.putString("custMobile", custMobile);
+					bundle.putString("custAddress", custAddress);		
 					bundle.putLong("custId", custId);
 				}
 				intent.putExtras(bundle);			
@@ -158,7 +171,7 @@ public class NewCustomerHome extends Activity {
          return true;
     }
     private boolean updateCustomerProfile(){
-    	
+    	Log.d("updateCustomerProfile", " updating custId "+custId);
     	if(custId>0){
     		EditText Name = (EditText) findViewById(R.id.editText_name);
 			EditText Mobile = (EditText) findViewById(R.id.editText_mobileNumber);
@@ -183,6 +196,7 @@ public class NewCustomerHome extends Activity {
 				Util.isModified((EditText)findViewById(R.id.editText_address), custAddress)){
 			changesSaved = false;
 		}
+		Log.d("CustomerDetail  ", "change saved "+changesSaved);
     	return changesSaved;
     }
     
@@ -220,4 +234,22 @@ public class NewCustomerHome extends Activity {
 		});
 		return builder.create();
     }
+    public void onBackPressed() {
+//    	if(custId <=0){
+//    		super.onBackPressed();
+//    	}
+//    	else 
+    		if(isChangesSaved()){
+//    			super.onBackPressed();
+//    			 Bundle bundle = this.getIntent().getExtras();
+// 		        if(bundle != null && "measurment.edit".equals(bundle.getString("previous.screen"))){
+// 		        	
+// 		        } else {
+ 		        	goHome();
+// 		        }
+     	}else{
+     		unSavedAlert().show();
+     		
+     	}
+	 }
 }

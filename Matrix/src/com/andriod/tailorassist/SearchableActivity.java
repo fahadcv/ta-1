@@ -316,4 +316,9 @@ public class SearchableActivity extends ListActivity {
 		startActivity(intent);
 	}
 
+	@Override
+	public void onBackPressed() {
+		goHome();
+	}
+
 }

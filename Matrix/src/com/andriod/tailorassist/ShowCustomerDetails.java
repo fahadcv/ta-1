@@ -304,4 +304,7 @@ public class ShowCustomerDetails extends Activity {
 			
 			
 		}
+	    public void onBackPressed() {
+	       goBack();
+	    }
 }

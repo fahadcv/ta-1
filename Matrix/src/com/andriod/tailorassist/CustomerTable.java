@@ -144,8 +144,8 @@ public class CustomerTable {
 
 	public Cursor searchCustomer(String custValue)throws SQLException {
 		if(Util.isNumeric(custValue)){
-			Cursor mCursor = mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID, KEY_NAME,KEY_MOBILE},
-					KEY_MOBILE+ "=" + custValue+" OR "+KEY_ROWID + "=" + custValue+" OR "+KEY_NAME + " like '%" + custValue +"%'", null, null, null, null, null);
+			Cursor mCursor = mDb.query( DATABASE_TABLE, new String[] {KEY_ROWID, KEY_NAME,KEY_MOBILE},
+					KEY_MOBILE+ "=" + custValue+" OR "+KEY_ROWID + "=" + custValue+" OR "+KEY_NAME + " like '%" + custValue +"%'", null, null, KEY_NAME, null); 
 			if (mCursor !=null){
 				mCursor.moveToFirst();
 			}

@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.util.Log;
 import android.widget.EditText;
 
 public class Util {
@@ -55,7 +56,8 @@ public class Util {
 		return data == null || "".equals(data.trim());
 	}
 	public static boolean isModified(EditText editField, String oldValue){
-		return !(Util.isEmpty(oldValue) && (editField == null || Util.isEmpty(editField.getText().toString()))
+		Log.d("isModified", "editField "+editField+" oldValue : "+oldValue);
+		return !(Util.isEmpty(oldValue) && (editField == null || editField.getText() ==null || Util.isEmpty(editField.getText().toString()))
 				|| (editField != null && editField.getText()!=null && editField.getText().toString().trim().equals(oldValue))) ;
 	
 	}
