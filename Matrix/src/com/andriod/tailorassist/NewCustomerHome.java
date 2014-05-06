@@ -74,18 +74,20 @@ public class NewCustomerHome extends Activity {
 				if(edit){
 					bundle.putString("mode", "edit");
 					Log.d("", "going to edit measurment");
-					if(!isChangesSaved()){
-						custName = Name.getText().toString().trim();			
-						custMobile = Mobile.getText().toString().trim();			
-						custAddress = Address.getText().toString().trim();
-						bundle.putString("changes", "preserve");
-						Log.d("btnSAddMeasurement.setOnClickListener", "going to edit measurment with preserve profile edit");
-					}
-					bundle.putString("custName", custName);
-					bundle.putString("custMobile", custMobile);
-					bundle.putString("custAddress", custAddress);		
+					
+					
 					bundle.putLong("custId", custId);
 				}
+				if(!isChangesSaved()){
+					custName = Name.getText().toString().trim();			
+					custMobile = Mobile.getText().toString().trim();			
+					custAddress = Address.getText().toString().trim();
+					bundle.putString("changes", "preserve");
+					Log.d("btnSAddMeasurement.setOnClickListener", "going to edit measurment with preserve profile edit");
+				}
+				bundle.putString("custName", custName);
+				bundle.putString("custMobile", custMobile);
+				bundle.putString("custAddress", custAddress);		
 				intent.putExtras(bundle);			
 				
 				//start the activity			
